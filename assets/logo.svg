@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 85" fill="none">
+  <g fill="currentColor">
+    <!-- Logomarca Ícone Náutico (Spinnaker / Vela Listrada e Água) -->
+    <g transform="translate(145, 2) scale(0.68)">
+      <!-- Vela Superior / Spinnaker com faixas náuticas -->
+      <path d="M50 2 L56 16 L44 16 Z" />
+      <path d="M42 20 C42 20 28 32 28 56 C28 80 42 94 42 94 L38 94 C24 80 20 60 20 42 C20 30 38 20 42 20 Z" />
+      
+      <!-- Listras horizontais do spinnaker -->
+      <path d="M37 22 C43 20 57 20 63 22 C67 25 70 30 71 33 C62 31 38 31 29 33 C30 30 33 25 37 22 Z" />
+      <path d="M26 38 C37 36 63 36 74 38 C76 43 77 48 77 51 C64 49 36 49 23 51 C23 48 24 43 26 38 Z" />
+      <path d="M22 57 C36 55 64 55 78 57 C77 63 75 69 72 74 C60 71 40 71 28 74 C25 69 23 63 22 57 Z" />
+      <path d="M30 80 C41 78 59 78 70 80 C66 86 60 91 50 94 C40 91 34 86 30 80 Z" />
+      
+      <!-- Ondas / Base marítima estilizada -->
+      <path d="M20 99 C30 96 40 98 50 98 C60 98 70 96 80 99 C72 103 62 101 50 101 C38 101 28 103 20 99 Z" />
+      <path d="M28 105 C37 103 44 104 50 104 C56 104 63 103 72 105 C66 108 58 107 50 107 C42 107 34 108 28 105 Z" />
+      <path d="M38 111 C43 110 47 110 50 110 C53 110 57 110 62 111 C58 113 54 112 50 112 C46 112 42 113 38 111 Z" />
+    </g>
+
+    <!-- Tipografia MARINA -->
+    <text x="5" y="58" font-family="'Cormorant Garamond', 'Georgia', serif" font-size="34" font-weight="500" letter-spacing="4" fill="currentColor">MARINA</text>
+
+    <!-- Tipografia YACHTING® -->
+    <text x="215" y="58" font-family="'Cormorant Garamond', 'Georgia', serif" font-size="34" font-weight="500" letter-spacing="4" fill="currentColor">YACHTING</text>
+    <text x="350" y="38" font-family="'Jost', sans-serif" font-size="12" font-weight="400" fill="currentColor">®</text>
+  </g>
+</svg>
