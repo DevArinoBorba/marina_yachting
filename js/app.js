@@ -1,6 +1,6 @@
 /**
- * MARINA YACHTING (GÊNOVA 1878) - SCRIPT PRINCIPAL & ROTEADOR WHATSAPP B2B
- * Franquia & Representação Exclusiva
+ * MARINA YACHTING BRASIL (GÊNOVA 1878) - SCRIPT PRINCIPAL & ROTEADOR WHATSAPP B2B
+ * Franquia & Representação Exclusiva Brasil
  * Tema Claro Minimalista (Default) + Alternador de Tema
  */
 
@@ -10,7 +10,7 @@
 // ==========================================================================
 const CONFIG = {
   whatsappNumber: "5511999999999", // EX: 5511988887777 (sem espaços, traços ou parênteses)
-  representativeName: "Concierge Marina Yachting",
+  representativeName: "Concierge Marina Yachting Brasil",
   defaultLocation: "São Paulo, SP"
 };
 
@@ -28,7 +28,7 @@ const CATALOG_ITEMS = [
     specs: {
       tecido: "100% Lã Fria 110's Italiana (Super 110's)",
       forro: "100% Cupro Bemberg respirável jacquard listrado",
-      botoes: "Latão naval gravado com âncora clássica",
+      acabamentos: "Latão naval gravado com âncora clássica",
       corte: "Alfaiataria Italiana Desestruturada, ombro natural",
       disponibilidade: "Pronta-entrega em grade ou lote sob medida"
     },
@@ -44,7 +44,7 @@ const CATALOG_ITEMS = [
     specs: {
       tecido: "Mix nobre de Linho Delavé e Lã Virgem Italiana",
       forro: "Meio-forro em seda natural respirável",
-      botoes: "Madrepérola fosca / Chifre natural",
+      acabamentos: "Madrepérola fosca / Chifre natural",
       corte: "Double-breasted contemporâneo, bolsos com portinhola",
       disponibilidade: "Lotes para alfaiatarias e multimarcas"
     },
@@ -60,31 +60,31 @@ const CATALOG_ITEMS = [
     specs: {
       tecido: "Lã Fria Pura com Lapela em Cetim de Seda",
       forro: "Seda pura personalizada Marina Yachting",
-      botoes: "Forrados em cetim artesanal",
+      acabamentos: "Acabamentos em cetim artesanal",
       corte: "Smoking Slim Fit estruturado com precisão artesanal",
       disponibilidade: "Mostruário exclusivo para prova no Salão"
     },
     shortDesc: "Sutileza e distinção máxima para jantares de gala, formaturas e celebrações corporativas de alto prestígio."
   },
   {
-    id: "etiqueta-jacquard",
-    name: "Etiquetas & Aviamentos Originais Marina Yachting",
-    category: "detalhes",
-    badge: "Homologado",
-    image: "imgs/Captura de tela 2026-08-29 175207.png",
-    ref: "MY-AVM 08/IT",
+    id: "caban-peacoat",
+    name: "Caban / Peacoat Náutico Italiano Estruturado",
+    category: "casacos",
+    badge: "Ícone Naval",
+    image: "imgs/Captura de tela 2026-08-29 175224.png",
+    ref: "MY-CBN 07/NV",
     specs: {
-      tecido: "Jacquard de alta densidade com fio acetinado",
-      tags: "Cartão Areia 600g com Hot Stamping Ouro Antigo",
-      forros: "Forro listrado náutico oficial Marina Yachting",
-      selo: "Certificação de autenticidade de lote",
-      disponibilidade: "Kit de aviamentos incluso para alfaiates parceiros"
+      tecido: "Lã Virgem Encorpada com trama hidrorrepelente",
+      forro: "Forro térmico listrado tradicional náutico",
+      acabamentos: "Gola reforçada e abotoamento transpassado",
+      corte: "Peacoat marítimo atemporal, bolso embutido",
+      disponibilidade: "Grade para mostruário e pronta-entrega"
     },
-    shortDesc: "Atestado internacional de requinte com as etiquetas tecidas e forros característicos da grife genovesa."
+    shortDesc: "O clássico casaco dos oficiais de marina reinterpretado para o homem contemporâneo com tecidos nobres italianos."
   },
   {
     id: "acessorios-nauticos",
-    name: "Toalha Náutica & Acessórios de Iate",
+    name: "Toalha Náutica & Artigos de Iate",
     category: "acessorios",
     badge: "Lifestyle",
     image: "imgs/Captura de tela 2026-08-29 175334.png",
@@ -92,7 +92,7 @@ const CATALOG_ITEMS = [
     specs: {
       tecido: "100% Algodão Egípcio felpudo de alta gramatura",
       detalhes: "Lettering bordado em alto relevo",
-      embalagem: "Sacola soft-touch Marina Yachting oficial",
+      acabamentos: "Bainha dupla com reforço náutico",
       uso: "Equipamento de iates, clubes náuticos e presentes corporativos",
       disponibilidade: "Lotes mínimos sob consulta"
     },
@@ -208,7 +208,7 @@ function initConciergeForm() {
     const city = cityInput.value.trim() || "[Cidade / Estado]";
     const intent = intentSelect.value || "Agendar visita privada e apresentação de mostruário";
 
-    let text = `Olá! Gostaria de falar com o representante oficial da Marina Yachting.\n\n`;
+    let text = `Olá! Gostaria de falar com a representação oficial da Marina Yachting Brasil.\n\n`;
     text += `• Meu Perfil: ${selectedRole}\n`;
     text += `• Nome: ${name}\n`;
     text += `• Empresa / Ateliê: ${company}\n`;
@@ -289,13 +289,13 @@ function initModal() {
     
     document.getElementById("modal-spec-tecido").innerText = item.specs.tecido;
     document.getElementById("modal-spec-forro").innerText = item.specs.forro;
-    document.getElementById("modal-spec-botoes").innerText = item.specs.botoes;
+    document.getElementById("modal-spec-acabamentos").innerText = item.specs.acabamentos;
     document.getElementById("modal-spec-corte").innerText = item.specs.corte;
     document.getElementById("modal-spec-disp").innerText = item.specs.disponibilidade;
 
     const modalWaBtn = document.getElementById("modal-whatsapp-cta");
     if (modalWaBtn) {
-      const msg = `Olá! Gostaria de consultar disponibilidade e condições do lote da peça: ${item.name} (${item.ref}).`;
+      const msg = `Olá! Gostaria de consultar disponibilidade e condições do lote da peça: ${item.name} (${item.ref}) junto à Marina Yachting Brasil.`;
       modalWaBtn.href = `https://wa.me/${CONFIG.whatsappNumber}?text=${encodeURIComponent(msg)}`;
     }
 
@@ -334,14 +334,14 @@ function initModal() {
 function initDirectWhatsAppButtons() {
   document.querySelectorAll("[data-wa-type]").forEach(btn => {
     const type = btn.getAttribute("data-wa-type");
-    let msg = "Olá! Gostaria de mais informações sobre a representação e mostruário B2B da Marina Yachting.";
+    let msg = "Olá! Gostaria de mais informações sobre a representação e mostruário B2B da Marina Yachting Brasil.";
 
     if (type === "header") {
-      msg = "Olá! Gostaria de agendar um atendimento institucional B2B com a Marina Yachting.";
+      msg = "Olá! Gostaria de agendar um atendimento institucional B2B com a Marina Yachting Brasil.";
     } else if (type === "floating") {
-      msg = "Olá! Tenho interesse em conhecer a coleção da Marina Yachting para meu negócio.";
+      msg = "Olá! Tenho interesse em conhecer a coleção da Marina Yachting Brasil para meu negócio.";
     } else if (type === "salon") {
-      msg = "Olá! Gostaria de solicitar um agendamento privado no salão de atendimento Marina Yachting.";
+      msg = "Olá! Gostaria de solicitar um agendamento privado no salão de atendimento da Marina Yachting Brasil.";
     }
 
     btn.href = `https://wa.me/${CONFIG.whatsappNumber}?text=${encodeURIComponent(msg)}`;
