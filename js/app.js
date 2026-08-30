@@ -91,10 +91,10 @@ const CATALOG_ITEMS = [
     ref: "MY-ACS 12/NV",
     specs: {
       tecido: "100% Algodão Egípcio felpudo de alta gramatura",
-      detalhes: "Lettering bordado em alto relevo",
-      acabamentos: "Bainha dupla com reforço náutico",
-      uso: "Equipamento de iates, clubes náuticos e presentes corporativos",
-      disponibilidade: "Lotes mínimos sob consulta"
+      forro: "Peça sem forro (felpa dupla encorpada)",
+      acabamentos: "Bainha dupla com reforço náutico e bordado naval",
+      corte: "Artigo têxtil naval de alta absorção e toque suave",
+      disponibilidade: "Lotes mínimos e personalização sob consulta"
     },
     shortDesc: "A essência marítima original traduzida em peças de lifestyle para decks, marinas e presentes corporativos."
   }
@@ -203,16 +203,20 @@ function initConciergeForm() {
 
   function generateMessage() {
     const selectedRole = form.querySelector('input[name="user_role"]:checked')?.value || "Proprietário de Alfaiataria / Ateliê";
-    const name = nameInput.value.trim() || "[Seu Nome]";
-    const company = companyInput.value.trim() || "[Nome da Alfaiataria / Empresa]";
-    const city = cityInput.value.trim() || "[Cidade / Estado]";
+    const name = nameInput.value.trim();
+    const company = companyInput.value.trim();
+    const city = cityInput.value.trim();
     const intent = intentSelect.value || "Agendar visita privada e apresentação de mostruário";
 
     let text = `Olá! Gostaria de falar com a representação oficial da Marina Yachting Brasil.\n\n`;
     text += `• Meu Perfil: ${selectedRole}\n`;
-    text += `• Nome: ${name}\n`;
-    text += `• Empresa / Ateliê: ${company}\n`;
-    text += `• Localização: ${city}\n`;
+    text += `• Nome: ${name || "[Seu Nome]"}\n`;
+    if (company) {
+      text += `• Empresa / Ateliê: ${company}\n`;
+    }
+    if (city) {
+      text += `• Localização: ${city}\n`;
+    }
     text += `• Objetivo: ${intent}\n\n`;
     text += `Gostaria de verificar disponibilidade para atendimento B2B.`;
 
