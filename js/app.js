@@ -287,11 +287,12 @@ function initModal() {
     document.getElementById("modal-ref").innerText = item.ref;
     document.getElementById("modal-desc").innerText = item.shortDesc;
     
-    document.getElementById("modal-spec-tecido").innerText = item.specs.tecido;
-    document.getElementById("modal-spec-forro").innerText = item.specs.forro;
-    document.getElementById("modal-spec-acabamentos").innerText = item.specs.acabamentos;
-    document.getElementById("modal-spec-corte").innerText = item.specs.corte;
-    document.getElementById("modal-spec-disp").innerText = item.specs.disponibilidade;
+    const FALLBACK_SPEC = "Sob consulta";
+    document.getElementById("modal-spec-tecido").innerText = item.specs.tecido || FALLBACK_SPEC;
+    document.getElementById("modal-spec-forro").innerText = item.specs.forro || FALLBACK_SPEC;
+    document.getElementById("modal-spec-acabamentos").innerText = item.specs.acabamentos || FALLBACK_SPEC;
+    document.getElementById("modal-spec-corte").innerText = item.specs.corte || FALLBACK_SPEC;
+    document.getElementById("modal-spec-disp").innerText = item.specs.disponibilidade || FALLBACK_SPEC;
 
     const modalWaBtn = document.getElementById("modal-whatsapp-cta");
     if (modalWaBtn) {
@@ -337,11 +338,11 @@ function initDirectWhatsAppButtons() {
     let msg = "Olá! Gostaria de mais informações sobre a representação e mostruário B2B da Marina Yachting Brasil.";
 
     if (type === "header") {
-      msg = "Olá! Gostaria de agendar um atendimento institucional B2B com a Marina Yachting Brasil.";
+      msg = "Olá! Gostaria de agendar um atendimento institucional B2B com a Marina Yachting Brasil. Posso detalhar meu perfil (ateliê, marca própria ou boutique) na conversa.";
     } else if (type === "floating") {
-      msg = "Olá! Tenho interesse em conhecer a coleção da Marina Yachting Brasil para meu negócio.";
+      msg = "Olá! Tenho interesse em conhecer a coleção da Marina Yachting Brasil para o meu negócio (ateliê, marca própria ou boutique).";
     } else if (type === "salon") {
-      msg = "Olá! Gostaria de solicitar um agendamento privado no salão de atendimento da Marina Yachting Brasil.";
+      msg = "Olá! Gostaria de solicitar um agendamento privado no salão de atendimento da Marina Yachting Brasil. Posso informar meu perfil (ateliê, marca própria ou boutique) ao confirmar o horário.";
     }
 
     btn.href = `https://wa.me/${CONFIG.whatsappNumber}?text=${encodeURIComponent(msg)}`;

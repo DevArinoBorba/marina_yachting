@@ -13,6 +13,7 @@
   --c-gold: #B0965E;            /* Ouro Antigo */
   --c-gold-hover: #967E4A;      /* Ouro tom fechado para contraste claro */
   --c-gold-light: #C4AB75;      /* Ouro claro */
+  --c-gold-ink: #7D6446;        /* Ouro escurecido para texto (AA ~5.5:1 em fundo claro) */
   --c-sand: #D8CDBA;            /* Areia de Cabine */
   --c-regatta: #2E4F6B;         /* Azul Regata */
   --c-leather: #6B4E37;         /* Couro Selado */
@@ -53,7 +54,8 @@
   --border-subtle: rgba(14, 31, 51, 0.09);
   --border-gold: rgba(176, 150, 94, 0.45);
   --border-gold-strong: #B0965E;
-  
+  --text-gold: var(--c-gold-ink);   /* Ouro usado como texto: escurecido para AA no fundo claro */
+
   --shadow-minimal: 0 4px 20px rgba(14, 31, 51, 0.04);
   --shadow-card: 0 12px 36px rgba(14, 31, 51, 0.06);
   --shadow-hover: 0 20px 48px rgba(14, 31, 51, 0.1);
@@ -82,6 +84,7 @@
   --border-subtle: rgba(176, 150, 94, 0.18);
   --border-gold: rgba(176, 150, 94, 0.35);
   --border-gold-strong: #B0965E;
+  --text-gold: var(--c-gold);   /* Ouro base já contrasta ~7:1 no fundo navy escuro */
 
   --shadow-minimal: 0 4px 20px rgba(0, 0, 0, 0.25);
   --shadow-card: 0 16px 40px rgba(0, 0, 0, 0.4);
@@ -135,6 +138,22 @@ button, input, select, textarea {
   outline: none;
 }
 
+/* Foco de Teclado (Acessibilidade) */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid var(--c-gold);
+  outline-offset: 2px;
+}
+
+.role-option input[type="radio"]:focus-visible + .role-option-box {
+  outline: 2px solid var(--c-gold);
+  outline-offset: 2px;
+}
+
 /* Scrollbar Minimalista */
 ::-webkit-scrollbar {
   width: 6px;
@@ -175,7 +194,7 @@ button, input, select, textarea {
   font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 0.28em;
-  color: var(--c-gold);
+  color: var(--text-gold);
   margin-bottom: 0.85rem;
 }
 
@@ -349,7 +368,7 @@ button, input, select, textarea {
 .badge-official {
   background: rgba(176, 150, 94, 0.12);
   border: 1px solid rgba(176, 150, 94, 0.3);
-  color: var(--c-gold);
+  color: var(--text-gold);
   padding: 2px 7px;
   font-size: 0.65rem;
   letter-spacing: 0.12em;
@@ -602,7 +621,7 @@ button, input, select, textarea {
   font-family: var(--ff-display);
   font-size: 2.1rem;
   font-weight: 500;
-  color: var(--c-gold);
+  color: var(--text-gold);
   line-height: 1;
   margin-bottom: 4px;
 }
@@ -1041,7 +1060,7 @@ button, input, select, textarea {
   font-size: 0.7rem;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--c-gold);
+  color: var(--text-gold);
   margin-bottom: 4px;
 }
 
@@ -1103,7 +1122,7 @@ button, input, select, textarea {
 .material-tag-num {
   font-family: var(--ff-display);
   font-size: 1.8rem;
-  color: var(--c-gold);
+  color: var(--text-gold);
   margin-bottom: 6px;
 }
 
@@ -1139,6 +1158,14 @@ button, input, select, textarea {
   text-align: center;
   max-width: 680px;
   margin: 0 auto 36px;
+}
+
+.concierge-intro .section-title {
+  font-size: 2.3rem;
+}
+
+.concierge-intro p.text-muted {
+  font-size: 0.95rem;
 }
 
 .concierge-form {
@@ -1438,7 +1465,7 @@ button, input, select, textarea {
   font-size: 0.7rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--c-gold);
+  color: var(--text-gold);
 }
 
 /* --- 14. FOOTER INSTITUCIONAL --- */
@@ -1579,6 +1606,11 @@ button, input, select, textarea {
   color: var(--text-title);
   line-height: 1.18;
   margin-bottom: 6px;
+}
+
+#modal-desc {
+  font-size: 0.88rem;
+  margin-bottom: 12px;
 }
 
 .modal-specs-table {
