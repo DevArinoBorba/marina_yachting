@@ -523,12 +523,21 @@ textarea:focus-visible,
   gap: 12px;
 }
 
+.mobile-only-action {
+  display: none;
+}
+
+.desktop-only-cta {
+  display: inline-flex;
+}
+
 .menu-toggle {
   display: none;
   background: transparent;
   color: var(--text-title);
   font-size: 1.4rem;
   cursor: pointer;
+  border: none;
 }
 
 /* --- 6. HERO SECTION (MINIMALISTA & AREJADA) --- */
@@ -1676,7 +1685,7 @@ textarea:focus-visible,
   100% { transform: scale(1.35); opacity: 0; }
 }
 
-/* --- 17. RESPONSIVIDADE --- */
+/* --- 17. RESPONSIVIDADE & MOBILE FIRST LUXURY --- */
 @media (max-width: 1024px) {
   .hero-grid,
   .heritage-grid,
@@ -1699,39 +1708,332 @@ textarea:focus-visible,
 }
 
 @media (max-width: 768px) {
+  /* Topbar Minimalista Mobile */
+  .topbar {
+    padding: 6px 0;
+    font-size: 0.65rem;
+  }
+
+  .topbar-left span:not(.badge-official) {
+    display: none;
+  }
+
+  .topbar-right a {
+    display: none;
+  }
+
+  .topbar-right {
+    gap: 8px;
+  }
+
+  /* Header & Navigation Mobile */
+  .site-header {
+    height: 64px;
+  }
+
+  .nav-wrap {
+    height: 64px;
+  }
+
+  .site-header.scrolled .nav-wrap {
+    height: 58px;
+  }
+
+  .brand-logo-svg {
+    height: 38px;
+    max-width: 180px;
+  }
+
+  .site-header.scrolled .brand-logo-svg {
+    height: 34px;
+    max-width: 160px;
+  }
+
+  .desktop-only-cta {
+    display: none !important;
+  }
+
+  .nav-actions {
+    gap: 8px;
+  }
+
+  .menu-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    border: 1px solid var(--border-gold);
+    background: var(--bg-surface);
+    color: var(--text-title);
+    font-size: 1.25rem;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+  }
+
+  .menu-toggle:hover,
+  .menu-toggle:focus {
+    border-color: var(--c-gold);
+    color: var(--c-gold);
+  }
+
   .nav-menu {
     position: fixed;
-    top: 84px;
+    top: 64px;
     left: 0;
     right: 0;
     background: var(--bg-surface);
     flex-direction: column;
-    padding: 26px;
-    gap: 18px;
-    border-bottom: 1px solid var(--border-gold);
-    transform: translateY(-150%);
-    transition: transform var(--transition-smooth);
-    box-shadow: var(--shadow-card);
+    align-items: flex-start;
+    padding: 22px 20px;
+    gap: 12px;
+    border-bottom: 2px solid var(--c-gold);
+    transform: translateY(-130%);
+    opacity: 0;
+    pointer-events: none;
+    visibility: hidden;
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s ease, visibility 0.35s;
+    box-shadow: 0 16px 36px rgba(14, 31, 51, 0.18);
+    z-index: 999;
+    max-height: calc(100vh - 64px);
+    overflow-y: auto;
+  }
+
+  .site-header.scrolled .nav-menu {
+    top: 58px;
+    max-height: calc(100vh - 58px);
   }
 
   .nav-menu.active {
     transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
+    visibility: visible;
   }
 
-  .menu-toggle {
+  .nav-menu li {
+    width: 100%;
+  }
+
+  .nav-link {
+    font-size: 0.92rem;
+    padding: 10px 0;
     display: block;
+    width: 100%;
+    border-bottom: 1px solid var(--border-subtle);
   }
 
-  .solutions-grid,
-  .catalog-grid,
+  .mobile-only-action {
+    display: block;
+    width: 100%;
+  }
+
+  /* Hero Section Mobile */
+  .hero-section {
+    padding: 28px 0 45px;
+    min-height: auto;
+  }
+
+  .hero-grid {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  .hero-content {
+    max-width: 100%;
+  }
+
+  .hero-tag {
+    font-size: 0.58rem;
+    letter-spacing: 0.1em;
+    padding: 4px 8px;
+    margin-bottom: 1rem;
+    max-width: 100%;
+    white-space: normal;
+    line-height: 1.4;
+  }
+
+  .hero-title {
+    font-size: clamp(1.8rem, 6.8vw, 2.3rem);
+    line-height: 1.16;
+    margin-bottom: 1rem;
+  }
+
+  .hero-desc {
+    font-size: 0.92rem;
+    line-height: 1.65;
+    margin-bottom: 1.4rem;
+  }
+
+  .hero-ctas {
+    flex-direction: column;
+    width: 100%;
+    gap: 10px;
+    margin-bottom: 1.8rem;
+  }
+
+  .hero-ctas .btn {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .hero-stats {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    padding-top: 16px;
+    text-align: center;
+  }
+
+  .stat-item h4 {
+    font-size: 1.5rem;
+  }
+
+  .stat-item p {
+    font-size: 0.58rem;
+    letter-spacing: 0.05em;
+    line-height: 1.3;
+  }
+
+  .hero-card-frame {
+    padding: 6px;
+  }
+
+  .hero-floating-badge {
+    position: relative;
+    bottom: auto;
+    left: auto;
+    margin-top: 10px;
+    max-width: 100%;
+    width: 100%;
+    padding: 12px 14px;
+    box-shadow: var(--shadow-minimal);
+  }
+
+  .hero-floating-badge h5 {
+    font-size: 0.84rem;
+  }
+
+  .hero-floating-badge p {
+    font-size: 0.72rem;
+  }
+
+  /* Heritage Mobile */
+  .heritage-dual-images {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .heritage-img-secondary {
+    display: none;
+  }
+
+  .heritage-seal {
+    bottom: 10px;
+    right: 10px;
+    width: 68px;
+    height: 68px;
+  }
+
+  .heritage-seal span:nth-child(2) {
+    font-size: 1.2rem;
+  }
+
+  .heritage-pillars {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  /* Solutions B2B Mobile */
+  .section-b2b-solutions {
+    padding: 48px 0;
+  }
+
+  .solutions-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .solution-card {
+    padding: 24px 18px;
+  }
+
+  .solution-card .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* Catalog / Mostruário Mobile */
+  .section-catalog {
+    padding: 48px 0;
+  }
+
+  .catalog-filters {
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    padding-bottom: 8px;
+    margin-bottom: 20px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .catalog-filters::-webkit-scrollbar {
+    display: none;
+  }
+
+  .filter-btn {
+    white-space: nowrap;
+    flex-shrink: 0;
+    padding: 8px 14px;
+    font-size: 0.72rem;
+  }
+
+  .catalog-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  /* Materials, Testimonials, Salon Mobile */
   .materials-grid,
   .testimonials-grid,
-  .role-options-grid,
-  .form-row-dual,
-  .footer-top-grid {
+  .salon-grid {
     grid-template-columns: 1fr;
+    gap: 20px;
   }
 
+  .salon-box-highlight {
+    padding: 22px 18px;
+  }
+
+  /* Form Concierge Mobile */
+  .section-concierge {
+    padding: 48px 0;
+  }
+
+  .concierge-form {
+    padding: 22px 16px;
+  }
+
+  .role-options-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .form-row-dual {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .input-field,
+  .select-field,
+  .textarea-field {
+    font-size: 16px; /* Evita zoom automático no iOS */
+    padding: 12px 14px;
+  }
+
+  /* Modal Mobile */
   .modal-card {
     grid-template-columns: 1fr;
     max-height: 90vh;
@@ -1739,12 +2041,30 @@ textarea:focus-visible,
   }
 
   .modal-img-wrap {
-    height: 240px;
+    height: 220px;
   }
 
-  .hero-stats {
+  .modal-details {
+    padding: 22px 18px;
+  }
+
+  /* Floating WhatsApp Mobile */
+  .floating-whatsapp-btn {
+    bottom: 18px;
+    right: 16px;
+    width: 50px;
+    height: 50px;
+    font-size: 1.5rem;
+  }
+
+  /* Footer Mobile */
+  .footer-top-grid {
     grid-template-columns: 1fr;
-    gap: 14px;
+    gap: 28px;
+  }
+
+  .footer-brand .brand-logo-svg {
+    height: 44px;
   }
 
   .footer-bottom {
