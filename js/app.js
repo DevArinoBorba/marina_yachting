@@ -1,12 +1,12 @@
 /**
  * MARINA YACHTING BRASIL (GÊNOVA 1878) - SCRIPT PRINCIPAL & ROTEADOR WHATSAPP B2B
- * Franquia & Representação Exclusiva Brasil
+ * Representação Exclusiva Brasil
  * Tema Claro Minimalista (Default) + Alternador de Tema
  */
 
 // ==========================================================================
 // 1. CONFIGURAÇÕES GERAIS
-// Altere o número de WhatsApp abaixo para o número oficial do franqueado (DDI + DDD + Número)
+// Altere o número de WhatsApp abaixo para o número oficial da representação (DDI + DDD + Número)
 // ==========================================================================
 const CONFIG = {
   whatsappNumber: "5511999999999", // EX: 5511988887777 (sem espaços, traços ou parênteses)

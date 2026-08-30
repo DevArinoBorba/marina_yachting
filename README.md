@@ -1,6 +1,6 @@
 # Marina Yachting Brasil — Landing Page B2B (Gênova 1878)
 
-Landing Page Institucional desenvolvida para franquia e representação B2B da marca italiana **Marina Yachting Brasil (Since 1878)**, direcionada a proprietários de alfaiatarias, ateliês de alta costura, empresários e lojistas premium.
+Landing Page Institucional desenvolvida para representação B2B da marca italiana **Marina Yachting Brasil (Since 1878)**, direcionada a proprietários de alfaiatarias, ateliês de alta costura, empresários e lojistas premium.
 
 ## 🌟 Funcionalidades
 
@@ -21,7 +21,7 @@ Landing Page Institucional desenvolvida para franquia e representação B2B da m
 
 ## 📱 Configuração do WhatsApp
 
-Para definir o número de WhatsApp do franqueado, altere a constante em `js/app.js`:
+Para definir o número de WhatsApp oficial, altere a constante em `js/app.js`:
 
 ```javascript
 const CONFIG = {

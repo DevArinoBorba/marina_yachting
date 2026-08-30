@@ -8,3 +8,4 @@ impeccable/
 
 # Arquivos Markdown
 *.md
+!README.md
