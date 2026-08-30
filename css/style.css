@@ -433,12 +433,12 @@ textarea:focus-visible,
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 84px;
+  height: 94px;
   transition: height var(--transition-fast);
 }
 
 .site-header.scrolled .nav-wrap {
-  height: 70px;
+  height: 76px;
 }
 
 .brand-logo-link {
@@ -453,7 +453,7 @@ textarea:focus-visible,
 }
 
 .brand-logo-svg {
-  height: 54px;
+  height: 72px;
   width: auto;
   aspect-ratio: 1633 / 680;
   color: var(--text-title);
@@ -462,7 +462,7 @@ textarea:focus-visible,
 }
 
 .site-header.scrolled .brand-logo-svg {
-  height: 46px;
+  height: 56px;
 }
 
 .brand-logo-link:hover .brand-logo-svg {
@@ -474,7 +474,7 @@ textarea:focus-visible,
 }
 
 .footer-brand .brand-logo-svg {
-  height: 54px;
+  height: 76px;
   color: #FFFFFF;
 }
 
@@ -2008,25 +2008,25 @@ textarea:focus-visible,
 
   /* Header & Navigation Mobile */
   .site-header {
-    height: 64px;
+    height: 72px;
   }
 
   .nav-wrap {
-    height: 64px;
+    height: 72px;
   }
 
   .site-header.scrolled .nav-wrap {
-    height: 58px;
+    height: 62px;
   }
 
   .brand-logo-svg {
-    height: 38px;
-    max-width: 180px;
+    height: 48px;
+    max-width: 220px;
   }
 
   .site-header.scrolled .brand-logo-svg {
-    height: 34px;
-    max-width: 160px;
+    height: 40px;
+    max-width: 180px;
   }
 
   .desktop-only-cta {
@@ -2060,7 +2060,7 @@ textarea:focus-visible,
 
   .nav-menu {
     position: fixed;
-    top: 64px;
+    top: 72px;
     left: 0;
     right: 0;
     background: var(--bg-surface);
@@ -2355,7 +2355,7 @@ textarea:focus-visible,
   }
 
   .footer-brand .brand-logo-svg {
-    height: 44px;
+    height: 56px;
   }
 
   .footer-bottom {
