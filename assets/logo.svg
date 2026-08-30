@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 510 108" fill="none" class="brand-logo-svg">
+  <g fill="currentColor">
+    <!-- Ícone Náutico Oficial: Spinnaker Sail & Mast -->
+    <g transform="translate(211, 2) scale(0.68)">
+      <!-- Topo / Mastro da Vela -->
+      <path d="M49 0 L54 14 L44 14 Z" />
+      <!-- Mastro e esteio lateral -->
+      <path d="M42 18 C42 18 28 32 28 56 C28 80 42 94 42 94 L38 94 C24 80 19 60 19 42 C19 29 37 18 42 18 Z" />
+      <!-- Listra 1 (superior) -->
+      <path d="M37 20 C43 18 57 18 63 20 C68 23 71 28 72 32 C63 30 38 30 28 32 C29 28 33 23 37 20 Z" />
+      <!-- Listra 2 -->
+      <path d="M25 37 C37 35 64 35 75 37 C77 42 78 47 78 50 C65 48 35 48 22 50 C22 47 23 42 25 37 Z" />
+      <!-- Listra 3 -->
+      <path d="M21 56 C36 54 65 54 79 56 C78 62 76 68 73 73 C61 70 39 70 27 73 C24 68 22 62 21 56 Z" />
+      <!-- Listra 4 (inferior do balão) -->
+      <path d="M29 79 C41 77 60 77 71 79 C67 85 61 90 50 93 C39 90 33 85 29 79 Z" />
+      <!-- Ondas do Mar / Base Náutica -->
+      <path d="M18 99 C29 96 40 98 50 98 C60 98 71 96 82 99 C74 103 63 101 50 101 C37 101 26 103 18 99 Z" />
+      <path d="M26 105 C35 103 43 104 50 104 C57 104 65 103 74 105 C68 108 59 107 50 107 C41 107 32 108 26 105 Z" />
+      <path d="M36 111 C42 110 46 110 50 110 C54 110 58 110 64 111 C60 113 55 112 50 112 C45 112 40 113 36 111 Z" />
+    </g>
+
+    <!-- MARINA (alinhado à direita antes do emblema) -->
+    <text x="195" y="52" text-anchor="end" font-family="'Cormorant Garamond', Garamond, 'Georgia', serif" font-size="34" font-weight="600" letter-spacing="4">MARINA</text>
+
+    <!-- YACHTING + ® (alinhado à esquerda depois do emblema) -->
+    <text x="295" y="52" text-anchor="start" font-family="'Cormorant Garamond', Garamond, 'Georgia', serif" font-size="34" font-weight="600" letter-spacing="4">YACHTING<tspan font-family="'Jost', sans-serif" font-size="13" font-weight="500" dy="-14">®</tspan></text>
+
+    <!-- Assinatura BRASIL com respiro e legibilidade aperfeiçoada -->
+    <text x="245" y="96" text-anchor="middle" font-family="'Jost', sans-serif" font-size="12" font-weight="600" letter-spacing="13">BRASIL</text>
+  </g>
+</svg>
