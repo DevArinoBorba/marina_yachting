@@ -1814,6 +1814,54 @@ textarea:focus-visible,
   align-items: center;
   font-size: 0.72rem;
   color: var(--c-mist);
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.footer-credit {
+  display: inline-flex;
+  align-items: center;
+}
+
+.orium-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  color: rgba(216, 205, 186, 0.85);
+  font-size: 0.74rem;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  transition: all var(--transition-fast);
+}
+
+.orium-link .credit-text {
+  font-family: var(--ff-sans);
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  color: rgba(216, 205, 186, 0.8);
+  transition: color var(--transition-fast);
+}
+
+.orium-logo-img {
+  height: 20px;
+  width: auto;
+  display: inline-block;
+  vertical-align: middle;
+  transition: transform var(--transition-fast), filter var(--transition-fast), opacity var(--transition-fast);
+  opacity: 0.95;
+}
+
+.orium-link:hover {
+  transform: translateY(-1px);
+}
+
+.orium-link:hover .credit-text {
+  color: var(--c-gold);
+}
+
+.orium-link:hover .orium-logo-img {
+  opacity: 1;
+  filter: drop-shadow(0 0 6px rgba(176, 150, 94, 0.45));
 }
 
 /* --- 15. MODAL DE DETALHES DA PEÇA --- */
@@ -2360,7 +2408,12 @@ textarea:focus-visible,
 
   .footer-bottom {
     flex-direction: column;
-    gap: 10px;
+    gap: 12px;
     text-align: center;
+    align-items: center;
+  }
+
+  .footer-credit {
+    justify-content: center;
   }
 }
