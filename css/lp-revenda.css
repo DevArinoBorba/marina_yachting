@@ -606,9 +606,9 @@ a {
 }
 
 .lp-form-header {
-  background: var(--c-navy-deep);
+  background: linear-gradient(180deg, #112338 0%, #0E1F33 100%);
   color: var(--c-white-sail);
-  padding: 2.5rem 2.5rem 2rem;
+  padding: 3rem 2.5rem 2.4rem;
   text-align: center;
   position: relative;
   border-bottom: 2px solid var(--c-gold);
@@ -617,34 +617,72 @@ a {
 .lp-form-header-badge {
   display: inline-flex;
   align-items: center;
-  gap: 0.4rem;
-  background: rgba(176, 150, 94, 0.2);
+  gap: 0.5rem;
+  background: rgba(176, 150, 94, 0.12);
   color: var(--c-gold-light);
-  border: 1px solid var(--c-gold);
-  font-size: 0.75rem;
+  border: 1px solid rgba(176, 150, 94, 0.4);
+  font-size: 0.72rem;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.15em;
-  padding: 0.3rem 0.8rem;
+  letter-spacing: 0.18em;
+  padding: 0.38rem 1.1rem;
   border-radius: var(--radius-full);
-  margin-bottom: 1rem;
+  margin-bottom: 1.25rem;
 }
 
-.lp-form-title {
+.lp-form-main-headline {
   font-family: var(--ff-display);
-  font-size: 2.3rem;
+  font-size: clamp(1.85rem, 3.2vw, 2.2rem);
   font-weight: 400;
-  color: var(--c-white-sail);
-  line-height: 1.15;
-  margin-bottom: 0.6rem;
+  color: #FFFFFF;
+  line-height: 1.25;
+  margin: 0 auto 0.75rem;
+  max-width: 740px;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+
+.lp-form-main-headline em {
+  font-style: italic;
+  color: var(--c-gold-light);
+}
+
+.lp-form-title-secondary {
+  font-family: var(--ff-sans);
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--c-gold);
+  margin: 0 auto 1.15rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+}
+
+.lp-form-title-secondary::before,
+.lp-form-title-secondary::after {
+  content: '';
+  display: inline-block;
+  width: 28px;
+  height: 1px;
+  background: rgba(176, 150, 94, 0.45);
 }
 
 .lp-form-subtitle {
-  color: var(--c-sand);
-  font-size: 0.95rem;
+  color: #D8CDBA;
+  font-size: 0.98rem;
   font-weight: 300;
+  line-height: 1.65;
   max-width: 620px;
   margin: 0 auto;
+  text-wrap: pretty;
+}
+
+.lp-form-subtitle strong {
+  color: #FFFFFF;
+  font-weight: 600;
 }
 
 .lp-form-body {
@@ -1012,16 +1050,63 @@ a {
   margin-right: auto;
 }
 
-.lp-footer-copy {
-  font-size: 0.75rem;
-  color: rgba(216, 205, 186, 0.6);
+.footer-bottom {
   border-top: 1px solid rgba(176, 150, 94, 0.2);
   padding-top: 1.5rem;
+  margin-top: 1.5rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
-  gap: 0.8rem;
+  gap: 1rem;
+  font-size: 0.75rem;
+  color: rgba(216, 205, 186, 0.7);
+}
+
+.footer-credit {
+  display: inline-flex;
+  align-items: center;
+}
+
+.orium-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  color: rgba(216, 205, 186, 0.85);
+  font-size: 0.74rem;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+.orium-link .credit-text {
+  font-family: var(--ff-sans);
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  color: rgba(216, 205, 186, 0.8);
+  transition: color 0.25s ease;
+}
+
+.orium-logo-img {
+  height: 20px;
+  width: auto;
+  display: inline-block;
+  vertical-align: middle;
+  transition: transform 0.25s ease, filter 0.25s ease, opacity 0.25s ease;
+  opacity: 0.95;
+}
+
+.orium-link:hover {
+  transform: translateY(-1px);
+}
+
+.orium-link:hover .credit-text {
+  color: var(--c-gold);
+}
+
+.orium-link:hover .orium-logo-img {
+  opacity: 1;
+  filter: drop-shadow(0 0 6px rgba(176, 150, 94, 0.45));
 }
 
 /* --- 11. RESPONSIVIDADE MOBILE-FIRST --- */
@@ -1062,6 +1147,10 @@ a {
     font-size: 2.3rem;
   }
 
+  .lp-form-main-headline {
+    font-size: 1.85rem;
+  }
+
   .lp-form-grid {
     grid-template-columns: 1fr;
   }
@@ -1091,8 +1180,9 @@ a {
     display: none;
   }
 
-  .lp-footer-copy {
+  .footer-bottom {
     flex-direction: column;
     text-align: center;
+    gap: 0.8rem;
   }
 }
