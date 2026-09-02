@@ -7,9 +7,9 @@
 // 1. CONFIGURAÇÃO OFICIAL
 // ==========================================================================
 const CONFIG = {
-  // Telefone fornecido: 47 9957-8216 (com o dígito 9 padrão de celular no Brasil: 47 99957-8216)
-  // Caso sua conta de WhatsApp esteja cadastrada com 8 dígitos, basta alterar para "554799578216"
-  whatsappNumber: "5547999578216",
+  // Telefone oficial: 61 9207-8544 (DDI 55 + DDD 61 + 9207-8544 -> 5561992078544)
+  // Caso a conta esteja sem o 9 extra: "556192078544"
+  whatsappNumber: "5561992078544",
   companyName: "Marina Yachting Brasil",
   conciergeRole: "Concierge B2B de Alfaiataria Italiana"
 };

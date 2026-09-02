@@ -25,7 +25,7 @@ Para definir o número de WhatsApp oficial, altere a constante em `js/app.js`:
 
 ```javascript
 const CONFIG = {
-  whatsappNumber: "5511999999999", // DDI + DDD + Número
+  whatsappNumber: "5561992078544", // (61) 9207-8544 (DDI 55 + DDD 61 + Número)
   representativeName: "Concierge Marina Yachting Brasil",
   defaultLocation: "São Paulo, SP"
 };

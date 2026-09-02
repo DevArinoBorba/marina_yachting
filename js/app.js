@@ -9,7 +9,7 @@
 // Altere o número de WhatsApp abaixo para o número oficial da representação (DDI + DDD + Número)
 // ==========================================================================
 const CONFIG = {
-  whatsappNumber: "5511999999999", // EX: 5511988887777 (sem espaços, traços ou parênteses)
+  whatsappNumber: "5561992078544", // Telefone Oficial: (61) 9207-8544 (com 9: 5561992078544)
   representativeName: "Concierge Marina Yachting Brasil",
   defaultLocation: "São Paulo, SP"
 };
