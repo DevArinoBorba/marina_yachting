@@ -324,9 +324,25 @@ function initFormSubmission() {
     }
 
     // ========================================================================
-    // MENSAGEM PADRÃO CODIFICADA PARA O WHATSAPP
+    // MENSAGEM EXECUTIVA PARA O WHATSAPP (MODELO OFICIAL COM EMOJIS)
     // ========================================================================
-    const whatsappMessage = `Olá! Meu nome é ${payload.nome}, da empresa ${payload.razao_social} (CNPJ: ${payload.cnpj}). Acabei de validar meus dados cadastrais no site e gostaria de atendimento comercial.`;
+    const compText = payload.complemento ? ` (${payload.complemento})` : '';
+    const bairroText = payload.bairro ? ` - ${payload.bairro}` : '';
+
+    const whatsappMessage = 
+`*CREDENCIAMENTO B2B — MARINA YACHTING BRASIL*
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+👤 *Responsável:* ${payload.nome}
+🏢 *Razão Social:* ${payload.razao_social}
+📋 *CNPJ:* ${payload.cnpj}
+📑 *Inscrição Estadual:* ${payload.ie}
+📞 *Telefone/WhatsApp:* ${payload.whatsapp}
+✉️ *E-mail:* ${payload.email}
+📍 *Endereço:* ${payload.endereco}, nº ${payload.numero}${compText}${bairroText}
+🏙️ *Cidade/UF:* ${payload.cidade}/${payload.uf} (CEP: ${payload.cep})
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Olá! Preenchi a ficha de revenda no site e desejo receber o catálogo oficial de alfaiataria italiana e a tabela de preços atacado.`;
+
     const waUrl = `https://wa.me/${CONFIG.whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
 
     // ========================================================================
