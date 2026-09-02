@@ -1,15 +1,21 @@
 /**
  * MARINA YACHTING BRASIL (GÊNOVA 1878) — SCRIPT DE CONVERSÃO B2B REVENDA
- * Validação de Formulário, Busca Automática de CEP (ViaCEP) e Roteador de WhatsApp
+ * Validação de Formulário, Busca Automática de CEP (ViaCEP), Integração Google Sheets e Roteador de WhatsApp
  */
 
 // ==========================================================================
 // 1. CONFIGURAÇÃO OFICIAL
 // ==========================================================================
 const CONFIG = {
-  // Telefone oficial: 61 9207-8544 (DDI 55 + DDD 61 + 9207-8544 -> 5561992078544)
-  // Caso a conta esteja sem o 9 extra: "556192078544"
-  whatsappNumber: "5561992078544",
+  // Endpoint do Google Apps Script para gravação em tempo real na planilha
+  endpointUrl: "https://script.google.com/macros/s/AKfycbw8tgRcKfLjuPfJOqz-t1kZEFIy2zQv5khAeQCv3eQQ_rMiyev81OAAul37kLUMMFhC4g/exec",
+  
+  // Número comercial de destino do WhatsApp
+  whatsappNumber: "556192078544",
+  
+  // Tolerância máxima de espera para envio à planilha (em milissegundos)
+  timeoutMs: 4000,
+  
   companyName: "Marina Yachting Brasil",
   conciergeRole: "Concierge B2B de Alfaiataria Italiana"
 };
@@ -164,19 +170,19 @@ function initInscricaoEstadualCheckbox() {
   checkbox.addEventListener('change', () => {
     if (checkbox.checked) {
       ieInput.value = 'ISENTO';
-      ieInput.setAttribute('readonly', 'true');
+      ieInput.disabled = true;
       ieInput.classList.remove('is-invalid');
       ieInput.classList.add('is-valid');
     } else {
       ieInput.value = '';
-      ieInput.removeAttribute('readonly');
+      ieInput.disabled = false;
       ieInput.classList.remove('is-valid');
     }
   });
 }
 
 // ==========================================================================
-// 5. VALIDAÇÃO E DESBLOQUEIO DO WHATSAPP
+// 5. VALIDAÇÃO, GOOGLE SHEETS E REDIRECIONAMENTO WHATSAPP
 // ==========================================================================
 function initFormSubmission() {
   const form = document.getElementById('b2b-revenda-form');
@@ -187,17 +193,19 @@ function initFormSubmission() {
 
   if (!form || !submitBtn) return;
 
+  let isSubmitting = false;
+
   form.addEventListener('submit', (e) => {
     e.preventDefault();
-    processForm();
+    if (!isSubmitting) processForm();
   });
 
   submitBtn.addEventListener('click', (e) => {
     e.preventDefault();
-    processForm();
+    if (!isSubmitting) processForm();
   });
 
-  function processForm() {
+  async function processForm() {
     clearErrors();
 
     const nome = document.getElementById('b2b-nome');
@@ -206,6 +214,7 @@ function initFormSubmission() {
     const cnpj = document.getElementById('b2b-cnpj');
     const razaoSocial = document.getElementById('b2b-razao');
     const inscricao = document.getElementById('b2b-inscricao');
+    const isentoCheckbox = document.getElementById('b2b-isento');
     const cep = document.getElementById('b2b-cep');
     const logradouro = document.getElementById('b2b-logradouro');
     const numero = document.getElementById('b2b-numero');
@@ -214,13 +223,15 @@ function initFormSubmission() {
     const cidade = document.getElementById('b2b-cidade');
     const uf = document.getElementById('b2b-uf');
 
+    const isIsento = isentoCheckbox ? isentoCheckbox.checked : false;
+
     const fieldsToValidate = [
       { el: nome, min: 3, label: 'Nome do Responsável' },
       { el: telefone, min: 10, label: 'Telefone / WhatsApp' },
       { el: email, isEmail: true, label: 'E-mail' },
       { el: cnpj, min: 14, label: 'CNPJ' },
       { el: razaoSocial, min: 3, label: 'Razão Social' },
-      { el: inscricao, min: 2, label: 'Inscrição Estadual' },
+      { el: inscricao, min: isIsento ? 0 : 2, label: 'Inscrição Estadual', skip: isIsento },
       { el: cep, min: 8, label: 'CEP' },
       { el: logradouro, min: 3, label: 'Endereço (Rua/Av)' },
       { el: numero, min: 1, label: 'Número' },
@@ -232,7 +243,7 @@ function initFormSubmission() {
     let firstErrorElement = null;
 
     fieldsToValidate.forEach((item) => {
-      if (!item.el) return;
+      if (!item.el || item.skip) return;
       const rawVal = item.el.value.trim();
       let isValid = true;
 
@@ -267,90 +278,123 @@ function initFormSubmission() {
       return;
     }
 
-    // Formulário Válido!
-    const leadData = {
+    // ========================================================================
+    // BLOQUEIO DE CLIQUE DUPLO & FEEDBACK VISUAL
+    // ========================================================================
+    isSubmitting = true;
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = `
+      <span class="lp-btn-spinner"></span>
+      <span>Validando dados...</span>
+    `;
+
+    // ========================================================================
+    // PREPARAÇÃO DO PAYLOAD CONFORME ESPECIFICAÇÃO
+    // ========================================================================
+    const ieValue = isIsento ? 'ISENTO' : (inscricao ? inscricao.value.trim() : 'ISENTO');
+
+    const payload = {
       nome: nome.value.trim(),
-      telefone: telefone.value.trim(),
+      whatsapp: telefone.value.trim(),
       email: email.value.trim(),
       cnpj: cnpj.value.trim(),
-      razaoSocial: razaoSocial.value.trim(),
-      inscricao: inscricao.value.trim(),
+      razao_social: razaoSocial.value.trim(),
+      ie: ieValue,
       cep: cep.value.trim(),
-      logradouro: logradouro.value.trim(),
+      endereco: logradouro.value.trim(),
       numero: numero.value.trim(),
       complemento: complemento ? complemento.value.trim() : '',
       bairro: bairro ? bairro.value.trim() : '',
       cidade: cidade.value.trim(),
-      uf: uf.value.trim(),
-      timestamp: new Date().toISOString()
+      uf: uf.value.trim()
     };
 
-    // Salva no localStorage do navegador do lead
+    // Salva localmente em cache para conveniência do usuário
     try {
-      localStorage.setItem('marina_b2b_lead', JSON.stringify(leadData));
+      localStorage.setItem('marina_b2b_lead', JSON.stringify({
+        ...payload,
+        razaoSocial: payload.razao_social,
+        telefone: payload.whatsapp,
+        inscricao: payload.ie,
+        logradouro: payload.endereco,
+        timestamp: new Date().toISOString()
+      }));
     } catch (e) {
-      console.warn('Erro ao salvar localmente:', e);
+      console.warn('Erro ao salvar no localStorage:', e);
     }
 
-    // Monta a mensagem executiva para o WhatsApp
-    const compText = leadData.complemento ? ` (${leadData.complemento})` : '';
-    const bairroText = leadData.bairro ? ` - ${leadData.bairro}` : '';
-
-    const whatsappMessage = 
-`*CREDENCIAMENTO B2B — MARINA YACHTING BRASIL*
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-👤 *Responsável:* ${leadData.nome}
-🏢 *Razão Social:* ${leadData.razaoSocial}
-📋 *CNPJ:* ${leadData.cnpj}
-📑 *Inscrição Estadual:* ${leadData.inscricao}
-📞 *Telefone/WhatsApp:* ${leadData.telefone}
-✉️ *E-mail:* ${leadData.email}
-📍 *Endereço:* ${leadData.logradouro}, nº ${leadData.numero}${compText}${bairroText}
-🏙️ *Cidade/UF:* ${leadData.cidade}/${leadData.uf} (CEP: ${leadData.cep})
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-Olá! Preenchi a ficha de revenda no site e desejo receber o catálogo oficial de alfaiataria italiana e a tabela de preços atacado.`;
-
+    // ========================================================================
+    // MENSAGEM PADRÃO CODIFICADA PARA O WHATSAPP
+    // ========================================================================
+    const whatsappMessage = `Olá! Meu nome é ${payload.nome}, da empresa ${payload.razao_social} (CNPJ: ${payload.cnpj}). Acabei de validar meus dados cadastrais no site e gostaria de atendimento comercial.`;
     const waUrl = `https://wa.me/${CONFIG.whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
 
-    // Dispara eventos de Analytics para Tráfego Pago se instalados na página
+    // ========================================================================
+    // DISPARO DE EVENTOS DE CONVERSÃO (META PIXEL / GOOGLE TAG)
+    // ========================================================================
     if (typeof window.fbq === 'function') {
-      window.fbq('track', 'Lead', {
-        content_name: 'Credenciamento B2B Alfaiataria',
-        status: true
-      });
+      try {
+        window.fbq('track', 'Lead', {
+          content_name: 'Credenciamento B2B Alfaiataria',
+          content_category: 'Atacado B2B',
+          status: true
+        });
+      } catch (err) {
+        console.warn('Erro ao disparar Meta Pixel:', err);
+      }
     }
     if (window.dataLayer && Array.isArray(window.dataLayer)) {
       window.dataLayer.push({
         event: 'lead_b2b_submit',
-        lead_city: leadData.cidade,
-        lead_uf: leadData.uf
+        lead_city: payload.cidade,
+        lead_uf: payload.uf
       });
     }
 
-    // 1. Atualiza visual do botão do formulário
+    // ========================================================================
+    // ENVIO POST GOOGLE APPS SCRIPT COM TIMEOUT RACE (MÁXIMO 4s)
+    // ========================================================================
+    const sendToGoogleSheets = async () => {
+      try {
+        await fetch(CONFIG.endpointUrl, {
+          method: 'POST',
+          mode: 'no-cors', // Obrigatório para evitar bloqueios de CORS no Google Apps Script
+          headers: {
+            'Content-Type': 'text/plain;charset=utf-8'
+          },
+          body: JSON.stringify(payload)
+        });
+      } catch (err) {
+        console.warn('Erro ao enviar dados para a planilha Google:', err);
+      }
+    };
+
+    const timeoutPromise = new Promise((resolve) => setTimeout(resolve, CONFIG.timeoutMs));
+
+    // Aguarda a gravação no Sheets ou o tempo limite de 4 segundos para não travar a jornada do lead
+    await Promise.race([sendToGoogleSheets(), timeoutPromise]);
+
+    // ========================================================================
+    // ATUALIZAÇÃO VISUAL E REDIRECIONAMENTO IN-APP
+    // ========================================================================
     submitBtn.innerHTML = `
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
         <polyline points="20 6 9 17 4 12"></polyline>
       </svg>
-      <span>Dados Cadastrais Validados com Sucesso</span>
+      <span>Redirecionando para o WhatsApp...</span>
     `;
     submitBtn.style.background = 'var(--c-success)';
     submitBtn.style.borderColor = 'var(--c-success)';
 
-    // 2. Destrava o card exclusivo do WhatsApp com animação
     if (unlockedCard) {
       unlockedCard.classList.add('is-unlocked');
-      unlockedCard.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     }
-
     if (waDirectBtn) {
       waDirectBtn.href = waUrl;
     }
 
-    // 3. Abre automaticamente o WhatsApp após 800ms
-    setTimeout(() => {
-      window.open(waUrl, '_blank');
-    }, 800);
+    // Redirecionamento direto via window.location.href (compatível com navegadores in-app)
+    window.location.href = waUrl;
   }
 
   function clearErrors() {
@@ -361,7 +405,9 @@ Olá! Preenchi a ficha de revenda no site e desejo receber o catálogo oficial d
   }
 }
 
-// Recupera dados caso o visitante já tenha preenchido anteriormente
+// ==========================================================================
+// 6. RECUPERAÇÃO AUTOMÁTICA DE DADOS PREENCHIDOS ANTERIORMENTE
+// ==========================================================================
 function loadSavedLeadData() {
   try {
     const raw = localStorage.getItem('marina_b2b_lead');
@@ -370,13 +416,13 @@ function loadSavedLeadData() {
 
     const map = {
       'b2b-nome': data.nome,
-      'b2b-telefone': data.telefone,
+      'b2b-telefone': data.whatsapp || data.telefone,
       'b2b-email': data.email,
       'b2b-cnpj': data.cnpj,
-      'b2b-razao': data.razaoSocial,
-      'b2b-inscricao': data.inscricao,
+      'b2b-razao': data.razao_social || data.razaoSocial,
+      'b2b-inscricao': data.ie || data.inscricao,
       'b2b-cep': data.cep,
-      'b2b-logradouro': data.logradouro,
+      'b2b-logradouro': data.endereco || data.logradouro,
       'b2b-numero': data.numero,
       'b2b-complemento': data.complemento,
       'b2b-bairro': data.bairro,
@@ -390,7 +436,17 @@ function loadSavedLeadData() {
         el.value = map[id];
       }
     });
+
+    if (data.ie === 'ISENTO' || data.inscricao === 'ISENTO') {
+      const isentoCb = document.getElementById('b2b-isento');
+      const ieInput = document.getElementById('b2b-inscricao');
+      if (isentoCb) isentoCb.checked = true;
+      if (ieInput) {
+        ieInput.value = 'ISENTO';
+        ieInput.disabled = true;
+      }
+    }
   } catch (e) {
-    // Silencioso em caso de localStorage desabilitado
+    // Silencioso em caso de localStorage bloqueado
   }
 }
