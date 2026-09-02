@@ -1,0 +1,1098 @@
+/* ==========================================================================
+   MARINA YACHTING BRASIL (GÊNOVA 1878) — LANDING PAGE B2B REVENDA
+   Design System Quiet Luxury · Otimizada para Tráfego Pago & Alta Conversão
+   ========================================================================== */
+
+/* --- 1. VARIÁVEIS & TOKENS DE DESIGN --- */
+:root {
+  --c-navy-deep: #0E1F33;       /* Azul Marinho Nobre Oficial */
+  --c-navy-surface: #14273E;    /* Superfície Marinho Suave */
+  --c-charcoal: #2A2A2C;        /* Cinza-Chumbo Nobre */
+  --c-white-sail: #F9F8F5;      /* Branco Vela Natural */
+  --c-gold: #B0965E;            /* Ouro Antigo Oficial */
+  --c-gold-hover: #967E4A;      /* Ouro tom fechado */
+  --c-gold-light: #D4BE8D;      /* Ouro iluminado */
+  --c-gold-subtle: rgba(176, 150, 94, 0.15);
+  --c-sand: #D8CDBA;            /* Areia de Cabine */
+  --c-sand-light: #F1ECE3;      /* Areia Clara */
+  --c-whatsapp: #25D366;        /* Verde WhatsApp */
+  --c-whatsapp-hover: #20BA5A;
+  --c-error: #D9534F;           /* Alerta de erro sutil */
+  --c-success: #2E7D32;         /* Verde Sucesso */
+
+  --ff-display: 'Cormorant Garamond', Garamond, Georgia, serif;
+  --ff-sans: 'Jost', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 14px;
+  --radius-full: 9999px;
+
+  --shadow-subtle: 0 4px 20px rgba(14, 31, 51, 0.05);
+  --shadow-card: 0 12px 36px rgba(14, 31, 51, 0.08);
+  --shadow-elevated: 0 20px 50px rgba(14, 31, 51, 0.14);
+  --shadow-gold: 0 8px 30px rgba(176, 150, 94, 0.28);
+  --shadow-wa: 0 10px 30px rgba(37, 211, 102, 0.35);
+
+  --transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* --- 2. RESET & BASE --- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  font-family: var(--ff-sans);
+  background-color: var(--c-white-sail);
+  color: var(--c-charcoal);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.container {
+  width: 100%;
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+/* --- 3. TOPBAR MINIMALISTA INSTITUCIONAL --- */
+.lp-topbar {
+  background: var(--c-navy-deep);
+  color: var(--c-white-sail);
+  font-size: 0.8rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 0.55rem 0;
+  border-bottom: 1px solid rgba(176, 150, 94, 0.2);
+}
+
+.lp-topbar-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.lp-topbar-left {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.lp-badge-b2b {
+  background: var(--c-gold);
+  color: var(--c-navy-deep);
+  font-weight: 700;
+  font-size: 0.65rem;
+  padding: 0.2rem 0.5rem;
+  border-radius: var(--radius-sm);
+  letter-spacing: 0.15em;
+}
+
+.lp-topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  color: var(--c-sand);
+  font-size: 0.75rem;
+}
+
+/* --- 4. HEADER LIMPO (SEM LINKS DE FUGA) --- */
+.lp-header {
+  background: rgba(249, 248, 245, 0.95);
+  backdrop-filter: blur(10px);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  border-bottom: 1px solid rgba(14, 31, 51, 0.08);
+  padding: 0.9rem 0;
+}
+
+.lp-nav-wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.lp-brand-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.lp-logo-img {
+  height: 44px;
+  width: auto;
+  object-fit: contain;
+}
+
+.lp-brand-badge {
+  border-left: 1px solid var(--c-sand);
+  padding-left: 0.8rem;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--c-gold-hover);
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.lp-header-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--c-navy-deep);
+  color: var(--c-white-sail);
+  padding: 0.65rem 1.3rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border-radius: var(--radius-sm);
+  transition: var(--transition);
+  border: 1px solid var(--c-navy-deep);
+}
+
+.lp-header-cta:hover {
+  background: var(--c-gold);
+  border-color: var(--c-gold);
+  color: var(--c-navy-deep);
+  transform: translateY(-1px);
+}
+
+/* --- 5. HERO SECTION DE ALTO IMPACTO B2B --- */
+.lp-hero {
+  position: relative;
+  padding: 4.5rem 0 5rem;
+  background: linear-gradient(135deg, #F9F8F5 0%, #F1ECE3 100%);
+  overflow: hidden;
+  border-bottom: 1px solid rgba(176, 150, 94, 0.25);
+}
+
+.lp-hero::before {
+  content: '';
+  position: absolute;
+  top: -20%;
+  right: -10%;
+  width: 550px;
+  height: 550px;
+  background: radial-gradient(circle, rgba(176, 150, 94, 0.12) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.lp-hero-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 3.5rem;
+  align-items: center;
+}
+
+.lp-hero-content {
+  position: relative;
+  z-index: 2;
+}
+
+.lp-tagline {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: var(--c-gold-hover);
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  margin-bottom: 1.2rem;
+}
+
+.lp-tagline-line {
+  width: 32px;
+  height: 1px;
+  background: var(--c-gold);
+}
+
+.lp-hero-title {
+  font-family: var(--ff-display);
+  font-size: 3.2rem;
+  font-weight: 400;
+  line-height: 1.12;
+  color: var(--c-navy-deep);
+  margin-bottom: 1.4rem;
+  letter-spacing: -0.01em;
+}
+
+.lp-hero-title em {
+  font-style: italic;
+  font-weight: 500;
+  color: var(--c-gold-hover);
+}
+
+.lp-hero-subtitle {
+  font-size: 1.15rem;
+  color: #4A4A4D;
+  font-weight: 300;
+  line-height: 1.65;
+  margin-bottom: 2rem;
+  max-width: 580px;
+}
+
+.lp-hero-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-bottom: 2.5rem;
+}
+
+.lp-badge-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  background: rgba(14, 31, 51, 0.05);
+  border: 1px solid rgba(14, 31, 51, 0.1);
+  padding: 0.45rem 0.9rem;
+  border-radius: var(--radius-full);
+  font-size: 0.82rem;
+  color: var(--c-navy-deep);
+  font-weight: 500;
+}
+
+.lp-badge-pill svg {
+  color: var(--c-gold-hover);
+}
+
+.lp-hero-actions {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  flex-wrap: wrap;
+}
+
+.lp-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  background: var(--c-gold);
+  color: var(--c-navy-deep);
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 1.1rem 2.2rem;
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-gold);
+  transition: var(--transition);
+  border: 1px solid var(--c-gold);
+}
+
+.lp-btn-primary:hover {
+  background: var(--c-navy-deep);
+  color: var(--c-white-sail);
+  border-color: var(--c-navy-deep);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-elevated);
+}
+
+.lp-hero-visual {
+  position: relative;
+}
+
+.lp-hero-card-img {
+  position: relative;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-elevated);
+  border: 4px solid #FFFFFF;
+}
+
+.lp-hero-card-img img {
+  width: 100%;
+  height: 480px;
+  object-fit: cover;
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.lp-hero-card-img:hover img {
+  transform: scale(1.03);
+}
+
+.lp-floating-badge {
+  position: absolute;
+  bottom: 24px;
+  left: 24px;
+  background: rgba(14, 31, 51, 0.92);
+  backdrop-filter: blur(8px);
+  border: 1px solid var(--c-gold);
+  color: var(--c-white-sail);
+  padding: 1rem 1.4rem;
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-card);
+}
+
+.lp-floating-badge-title {
+  font-family: var(--ff-display);
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--c-gold-light);
+  line-height: 1.1;
+  margin-bottom: 0.2rem;
+}
+
+.lp-floating-badge-sub {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--c-sand);
+}
+
+/* --- 6. SEÇÃO DE VANTAGENS B2B (REVENDA & MARGENS) --- */
+.lp-benefits {
+  padding: 5rem 0;
+  background: #FFFFFF;
+  border-bottom: 1px solid rgba(14, 31, 51, 0.06);
+}
+
+.lp-section-header {
+  text-align: center;
+  max-width: 760px;
+  margin: 0 auto 3.5rem;
+}
+
+.lp-section-category {
+  color: var(--c-gold-hover);
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  margin-bottom: 0.7rem;
+}
+
+.lp-section-title {
+  font-family: var(--ff-display);
+  font-size: 2.6rem;
+  font-weight: 400;
+  line-height: 1.15;
+  color: var(--c-navy-deep);
+  margin-bottom: 1rem;
+}
+
+.lp-section-desc {
+  font-size: 1.05rem;
+  color: #64707D;
+  font-weight: 300;
+}
+
+.lp-benefits-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.8rem;
+}
+
+.lp-benefit-card {
+  background: var(--c-white-sail);
+  border: 1px solid rgba(14, 31, 51, 0.08);
+  padding: 2.2rem 1.6rem;
+  border-radius: var(--radius-md);
+  transition: var(--transition);
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+}
+
+.lp-benefit-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--c-gold);
+  box-shadow: var(--shadow-card);
+  background: #FFFFFF;
+}
+
+.lp-benefit-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-sm);
+  background: rgba(176, 150, 94, 0.15);
+  color: var(--c-gold-hover);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.4rem;
+}
+
+.lp-benefit-card-title {
+  font-family: var(--ff-display);
+  font-size: 1.35rem;
+  color: var(--c-navy-deep);
+  font-weight: 600;
+  margin-bottom: 0.6rem;
+}
+
+.lp-benefit-card-text {
+  font-size: 0.9rem;
+  color: #55585D;
+  line-height: 1.55;
+}
+
+/* --- 7. VITRINE DE PRODUTOS: TERNOS EM ALFAIATARIA ITALIANA --- */
+.lp-showcase {
+  padding: 5.5rem 0;
+  background: var(--c-white-sail);
+}
+
+.lp-showcase-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+.lp-product-card {
+  background: #FFFFFF;
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(14, 31, 51, 0.08);
+  overflow: hidden;
+  box-shadow: var(--shadow-subtle);
+  transition: var(--transition);
+  display: flex;
+  flex-direction: column;
+}
+
+.lp-product-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-elevated);
+  border-color: var(--c-gold);
+}
+
+.lp-product-img-wrap {
+  position: relative;
+  height: 380px;
+  overflow: hidden;
+  background: #EFECE6;
+}
+
+.lp-product-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.lp-product-card:hover .lp-product-img-wrap img {
+  transform: scale(1.04);
+}
+
+.lp-product-badge {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  background: rgba(14, 31, 51, 0.88);
+  backdrop-filter: blur(4px);
+  color: var(--c-gold-light);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  padding: 0.35rem 0.75rem;
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+  border: 1px solid rgba(176, 150, 94, 0.4);
+}
+
+.lp-product-info {
+  padding: 1.8rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.lp-product-ref {
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--c-gold-hover);
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+}
+
+.lp-product-name {
+  font-family: var(--ff-display);
+  font-size: 1.45rem;
+  color: var(--c-navy-deep);
+  font-weight: 600;
+  line-height: 1.25;
+  margin-bottom: 0.8rem;
+}
+
+.lp-product-specs {
+  list-style: none;
+  font-size: 0.85rem;
+  color: #55585D;
+  margin-bottom: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.lp-product-specs li {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.lp-product-specs li svg {
+  color: var(--c-gold-hover);
+  flex-shrink: 0;
+}
+
+.lp-product-cta {
+  margin-top: auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 0.85rem;
+  background: var(--c-navy-deep);
+  color: var(--c-white-sail);
+  font-size: 0.82rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  border-radius: var(--radius-sm);
+  transition: var(--transition);
+}
+
+.lp-product-cta:hover {
+  background: var(--c-gold);
+  color: var(--c-navy-deep);
+}
+
+/* --- 8. O FORMULÁRIO B2B QUALIFICADO & DESTRAVAMENTO DO WHATSAPP --- */
+.lp-form-section {
+  padding: 5.5rem 0 6rem;
+  background: linear-gradient(180deg, #FFFFFF 0%, #F4EFE7 100%);
+  position: relative;
+  border-top: 1px solid rgba(176, 150, 94, 0.25);
+}
+
+.lp-form-wrapper {
+  max-width: 860px;
+  margin: 0 auto;
+  background: #FFFFFF;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-elevated);
+  border: 1px solid rgba(176, 150, 94, 0.35);
+  overflow: hidden;
+  position: relative;
+}
+
+.lp-form-header {
+  background: var(--c-navy-deep);
+  color: var(--c-white-sail);
+  padding: 2.5rem 2.5rem 2rem;
+  text-align: center;
+  position: relative;
+  border-bottom: 2px solid var(--c-gold);
+}
+
+.lp-form-header-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: rgba(176, 150, 94, 0.2);
+  color: var(--c-gold-light);
+  border: 1px solid var(--c-gold);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  padding: 0.3rem 0.8rem;
+  border-radius: var(--radius-full);
+  margin-bottom: 1rem;
+}
+
+.lp-form-title {
+  font-family: var(--ff-display);
+  font-size: 2.3rem;
+  font-weight: 400;
+  color: var(--c-white-sail);
+  line-height: 1.15;
+  margin-bottom: 0.6rem;
+}
+
+.lp-form-subtitle {
+  color: var(--c-sand);
+  font-size: 0.95rem;
+  font-weight: 300;
+  max-width: 620px;
+  margin: 0 auto;
+}
+
+.lp-form-body {
+  padding: 2.5rem 2.8rem;
+}
+
+.lp-form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.3rem;
+}
+
+.lp-form-group {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.lp-form-group.full-width {
+  grid-column: span 2;
+}
+
+.lp-form-label {
+  font-size: 0.82rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--c-navy-deep);
+  margin-bottom: 0.45rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.lp-form-label .optional {
+  font-size: 0.72rem;
+  color: #8C949D;
+  text-transform: none;
+  font-weight: 400;
+}
+
+.lp-input-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.lp-input-icon {
+  position: absolute;
+  left: 14px;
+  color: #8C949D;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  transition: var(--transition);
+}
+
+.lp-form-input {
+  width: 100%;
+  padding: 0.85rem 1rem 0.85rem 2.6rem;
+  font-family: var(--ff-sans);
+  font-size: 0.95rem;
+  color: var(--c-charcoal);
+  background: var(--c-white-sail);
+  border: 1px solid rgba(14, 31, 51, 0.18);
+  border-radius: var(--radius-sm);
+  transition: var(--transition);
+  outline: none;
+}
+
+.lp-form-input:focus {
+  background: #FFFFFF;
+  border-color: var(--c-gold);
+  box-shadow: 0 0 0 3px rgba(176, 150, 94, 0.18);
+}
+
+.lp-form-input:focus + .lp-input-icon,
+.lp-form-input:focus ~ .lp-input-icon {
+  color: var(--c-gold-hover);
+}
+
+.lp-form-input.is-valid {
+  border-color: var(--c-success);
+}
+
+.lp-form-input.is-invalid {
+  border-color: var(--c-error);
+  background-color: #FFF8F8;
+}
+
+/* Loading spinner no campo de CEP */
+.lp-cep-spinner {
+  position: absolute;
+  right: 12px;
+  width: 18px;
+  height: 18px;
+  border: 2px solid rgba(176, 150, 94, 0.2);
+  border-top-color: var(--c-gold);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  display: none;
+}
+
+.lp-cep-spinner.is-active {
+  display: block;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.lp-cep-feedback {
+  font-size: 0.75rem;
+  margin-top: 0.35rem;
+  color: var(--c-gold-hover);
+  display: none;
+}
+
+.lp-cep-feedback.is-visible {
+  display: block;
+}
+
+/* Checkbox Isento */
+.lp-checkbox-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.78rem;
+  color: #64707D;
+  margin-top: 0.4rem;
+  cursor: pointer;
+}
+
+.lp-checkbox-label input {
+  accent-color: var(--c-gold);
+  cursor: pointer;
+}
+
+/* ÁREA DE LIBERAÇÃO DO WHATSAPP */
+.lp-unlock-zone {
+  margin-top: 2rem;
+  padding-top: 1.8rem;
+  border-top: 1px solid rgba(14, 31, 51, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.lp-step-indicator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  font-size: 0.82rem;
+  color: #64707D;
+}
+
+.lp-step-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--c-gold);
+}
+
+/* Botão de Envio / Validação Principal */
+.lp-btn-submit-step {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.7rem;
+  width: 100%;
+  padding: 1.2rem;
+  background: var(--c-navy-deep);
+  color: var(--c-white-sail);
+  border: 1px solid var(--c-navy-deep);
+  border-radius: var(--radius-sm);
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: var(--transition);
+  box-shadow: var(--shadow-card);
+}
+
+.lp-btn-submit-step:hover {
+  background: #172F4C;
+  border-color: var(--c-gold);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-elevated);
+}
+
+/* BOTÃO OFICIAL DO WHATSAPP (DESTALHADO / ESTADO BLOQUEADO & LIBERADO) */
+.lp-whatsapp-unlocked-card {
+  display: none;
+  background: #F0FDF4;
+  border: 2px solid var(--c-whatsapp);
+  border-radius: var(--radius-md);
+  padding: 1.8rem;
+  text-align: center;
+  box-shadow: var(--shadow-wa);
+  animation: slideDown 0.4s ease-out;
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.lp-whatsapp-unlocked-card.is-unlocked {
+  display: block;
+}
+
+.lp-unlocked-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  color: #166534;
+  font-weight: 700;
+  font-size: 1.05rem;
+  margin-bottom: 0.4rem;
+}
+
+.lp-unlocked-desc {
+  font-size: 0.88rem;
+  color: #374151;
+  margin-bottom: 1.2rem;
+}
+
+.lp-btn-whatsapp-direct {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+  background: var(--c-whatsapp);
+  color: #FFFFFF;
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  padding: 1.15rem 2.2rem;
+  border-radius: var(--radius-sm);
+  box-shadow: 0 8px 24px rgba(37, 211, 102, 0.45);
+  transition: var(--transition);
+  text-transform: uppercase;
+}
+
+.lp-btn-whatsapp-direct:hover {
+  background: var(--c-whatsapp-hover);
+  transform: scale(1.02);
+  box-shadow: 0 12px 30px rgba(37, 211, 102, 0.6);
+}
+
+.lp-btn-whatsapp-direct svg {
+  animation: pulseWa 2s infinite;
+}
+
+@keyframes pulseWa {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.15); }
+  100% { transform: scale(1); }
+}
+
+.lp-form-feedback {
+  margin-top: 0.8rem;
+  font-size: 0.85rem;
+  text-align: center;
+  padding: 0.75rem;
+  border-radius: var(--radius-sm);
+  display: none;
+}
+
+.lp-form-feedback.is-error {
+  display: block;
+  background: #FEF2F2;
+  color: var(--c-error);
+  border: 1px solid #FCA5A5;
+}
+
+.lp-form-security {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+  color: #8C949D;
+  font-size: 0.78rem;
+}
+
+.lp-form-security span {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+/* --- 9. FAQ / DÚVIDAS FREQUENTES B2B --- */
+.lp-faq {
+  padding: 5rem 0;
+  background: #FFFFFF;
+  border-top: 1px solid rgba(14, 31, 51, 0.08);
+}
+
+.lp-faq-grid {
+  max-width: 800px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.lp-faq-item {
+  border: 1px solid rgba(14, 31, 51, 0.1);
+  border-radius: var(--radius-sm);
+  padding: 1.4rem 1.6rem;
+  background: var(--c-white-sail);
+  transition: var(--transition);
+}
+
+.lp-faq-item:hover {
+  border-color: var(--c-gold);
+}
+
+.lp-faq-question {
+  font-family: var(--ff-display);
+  font-size: 1.3rem;
+  color: var(--c-navy-deep);
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.lp-faq-answer {
+  font-size: 0.92rem;
+  color: #55585D;
+  line-height: 1.6;
+}
+
+/* --- 10. RODAPÉ MÍNIMO INSTITUCIONAL B2B --- */
+.lp-footer {
+  background: var(--c-navy-deep);
+  color: var(--c-white-sail);
+  padding: 3rem 0 2rem;
+  border-top: 2px solid var(--c-gold);
+  text-align: center;
+}
+
+.lp-footer-logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.lp-footer-logo img {
+  height: 48px;
+  width: auto;
+  filter: brightness(0) invert(1);
+}
+
+.lp-footer-text {
+  font-size: 0.85rem;
+  color: var(--c-sand);
+  margin-bottom: 1.5rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.lp-footer-copy {
+  font-size: 0.75rem;
+  color: rgba(216, 205, 186, 0.6);
+  border-top: 1px solid rgba(176, 150, 94, 0.2);
+  padding-top: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+}
+
+/* --- 11. RESPONSIVIDADE MOBILE-FIRST --- */
+@media (max-width: 992px) {
+  .lp-hero-grid {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+    text-align: center;
+  }
+
+  .lp-tagline {
+    justify-content: center;
+  }
+
+  .lp-hero-badges {
+    justify-content: center;
+  }
+
+  .lp-hero-actions {
+    justify-content: center;
+  }
+
+  .lp-hero-card-img img {
+    height: 380px;
+  }
+
+  .lp-benefits-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .lp-showcase-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .lp-hero-title {
+    font-size: 2.3rem;
+  }
+
+  .lp-form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .lp-form-group.full-width {
+    grid-column: span 1;
+  }
+
+  .lp-form-body {
+    padding: 1.8rem 1.4rem;
+  }
+
+  .lp-benefits-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .lp-showcase-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .lp-header-cta {
+    padding: 0.5rem 0.9rem;
+    font-size: 0.75rem;
+  }
+
+  .lp-topbar-right {
+    display: none;
+  }
+
+  .lp-footer-copy {
+    flex-direction: column;
+    text-align: center;
+  }
+}
