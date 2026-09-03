@@ -10,8 +10,9 @@ const CONFIG = {
   // Endpoint do Google Apps Script para gravação em tempo real na planilha
   endpointUrl: "https://script.google.com/macros/s/AKfycbw8tgRcKfLjuPfJOqz-t1kZEFIy2zQv5khAeQCv3eQQ_rMiyev81OAAul37kLUMMFhC4g/exec",
   
-  // Número comercial de destino do WhatsApp
-  whatsappNumber: "556192078544",
+  // Número comercial de destino: (61) 9 9207-8544 — DDI 55 + DDD 61 + nono dígito.
+  // Mantido idêntico ao de js/app.js; sem o nono dígito o link do WhatsApp não abre conversa.
+  whatsappNumber: "5561992078544",
   
   // Tolerância máxima de espera para envio à planilha (em milissegundos)
   timeoutMs: 4000,
