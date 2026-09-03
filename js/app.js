@@ -107,7 +107,6 @@ document.addEventListener("DOMContentLoaded", () => {
   initThemeToggle();
   initHeaderScroll();
   initMobileMenu();
-  initConciergeForm();
   initCatalogFilters();
   initModal();
   initDirectWhatsAppButtons();
@@ -187,63 +186,7 @@ function initMobileMenu() {
 }
 
 // ==========================================================================
-// 4. ROTEADOR INTELIGENTE WHATSAPP (CONCIERGE B2B)
-// ==========================================================================
-function initConciergeForm() {
-  const form = document.getElementById("concierge-form");
-  const previewBox = document.getElementById("concierge-preview-text");
-  
-  if (!form || !previewBox) return;
-
-  const roleInputs = form.querySelectorAll('input[name="user_role"]');
-  const nameInput = document.getElementById("client_name");
-  const companyInput = document.getElementById("client_company");
-  const cityInput = document.getElementById("client_city");
-  const intentSelect = document.getElementById("client_intent");
-
-  function generateMessage() {
-    const selectedRole = form.querySelector('input[name="user_role"]:checked')?.value || "Proprietário de Alfaiataria / Ateliê";
-    const name = nameInput.value.trim();
-    const company = companyInput.value.trim();
-    const city = cityInput.value.trim();
-    const intent = intentSelect.value || "Agendar visita privada e apresentação de mostruário";
-
-    let text = `Olá! Gostaria de falar com a representação oficial da Marina Yachting Brasil.\n\n`;
-    text += `• Meu Perfil: ${selectedRole}\n`;
-    text += `• Nome: ${name || "[Seu Nome]"}\n`;
-    if (company) {
-      text += `• Empresa / Ateliê: ${company}\n`;
-    }
-    if (city) {
-      text += `• Localização: ${city}\n`;
-    }
-    text += `• Objetivo: ${intent}\n\n`;
-    text += `Gostaria de verificar disponibilidade para atendimento B2B.`;
-
-    previewBox.innerText = `"${text.replace(/\n/g, ' ')}"`;
-    return text;
-  }
-
-  const inputsToListen = [nameInput, companyInput, cityInput, intentSelect, ...roleInputs];
-  inputsToListen.forEach(input => {
-    if (input) {
-      input.addEventListener("input", generateMessage);
-      input.addEventListener("change", generateMessage);
-    }
-  });
-
-  form.addEventListener("submit", (e) => {
-    e.preventDefault();
-    const finalMessage = generateMessage();
-    const url = `https://wa.me/${CONFIG.whatsappNumber}?text=${encodeURIComponent(finalMessage)}`;
-    window.open(url, "_blank");
-  });
-
-  generateMessage();
-}
-
-// ==========================================================================
-// 5. FILTROS DO MOSTRUÁRIO
+// 4. FILTROS DO MOSTRUÁRIO
 // ==========================================================================
 function initCatalogFilters() {
   const filterBtns = document.querySelectorAll(".filter-btn");
@@ -271,7 +214,7 @@ function initCatalogFilters() {
 }
 
 // ==========================================================================
-// 6. MODAL DE FICHA TÉCNICA E DETALHES
+// 5. MODAL DE FICHA TÉCNICA E DETALHES
 // ==========================================================================
 function initModal() {
   const modalOverlay = document.getElementById("product-modal");
@@ -334,7 +277,7 @@ function initModal() {
 }
 
 // ==========================================================================
-// 7. BOTÕES DIRETOS DE WHATSAPP (HEADER, CTA, FLOATING)
+// 6. BOTÕES DIRETOS DE WHATSAPP (HEADER, CTA, FLOATING)
 // ==========================================================================
 function initDirectWhatsAppButtons() {
   document.querySelectorAll("[data-wa-type]").forEach(btn => {

@@ -709,133 +709,110 @@
     </div>
   </section>
   <!-- ======================================================================
-       8. CONCIERGE & ROTEADOR INTELIGENTE DE WHATSAPP B2B
+       8. CREDENCIAMENTO OFICIAL — CHAMADA PARA A PÁGINA /cadastro
        ====================================================================== -->
-  <section class="section-concierge" id="concierge">
-    <div class="container container-narrow">
+  <section class="section-credenciamento" id="concierge">
+    <div class="container">
+      <div class="cred-panel">
 
-      <div class="concierge-wrapper">
-
-        <div class="concierge-intro">
-          <span class="eyebrow">Atendimento Privado B2B Brasil</span>
-          <h2 class="section-title">Conecte-se com a <span>Representação Oficial
-              Brasil</span></h2>
-          <p class="text-muted">
-            Selecione seu perfil e objetivo abaixo para abrir uma conversa direta no WhatsApp já personalizada para o
-            seu atendimento.
+        <div class="cred-content">
+          <span class="eyebrow no-after">Credenciamento Oficial de Lojista</span>
+          <h2 class="cred-title">Abra sua conta de <em>revenda oficial</em></h2>
+          <p class="cred-lead">
+            Um único cadastro libera a tabela de atacado, a grade completa da coleção e o canal
+            direto com a importadora no Brasil.
           </p>
-          <div class="gold-divider"></div>
+
+          <ul class="cred-list">
+            <li>
+              <span class="cred-list-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                  stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path>
+                  <line x1="7" y1="7" x2="7.01" y2="7"></line>
+                </svg>
+              </span>
+              <div>
+                <h3>Tabela de preços de atacado</h3>
+                <p>Condições por lote liberadas assim que o CNPJ é validado.</p>
+              </div>
+            </li>
+            <li>
+              <span class="cred-list-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                  stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                </svg>
+              </span>
+              <div>
+                <h3>Concierge comercial dedicado</h3>
+                <p>Atendimento direto no WhatsApp com a importadora. Sem intermediários.</p>
+              </div>
+            </li>
+            <li>
+              <span class="cred-list-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                  stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                  <circle cx="12" cy="10" r="3"></circle>
+                </svg>
+              </span>
+              <div>
+                <h3>Exclusividade territorial</h3>
+                <p>Grade e volume negociados conforme a praça da sua loja.</p>
+              </div>
+            </li>
+          </ul>
         </div>
 
-        <form id="concierge-form" class="concierge-form">
+        <aside class="cred-action">
+          <span class="cred-action-label">Ficha de credenciamento</span>
+          <p class="cred-action-text">
+            Preencha os dados da sua empresa. O canal do concierge é liberado ao final do envio.
+          </p>
 
-          <!-- Seleção de Perfil -->
-          <div class="form-group-role">
-            <label class="form-label">1. Identifique o seu perfil:</label>
-            <div class="role-options-grid">
+          <ol class="cred-steps">
+            <li>
+              <span class="cred-step-num">1</span>
+              <div>
+                <strong>Dados da empresa</strong>
+                <span>CNPJ, inscrição estadual e endereço de entrega.</span>
+              </div>
+            </li>
+            <li>
+              <span class="cred-step-num">2</span>
+              <div>
+                <strong>Validação do cadastro</strong>
+                <span>A ficha chega direto à importadora no Brasil.</span>
+              </div>
+            </li>
+            <li>
+              <span class="cred-step-num">3</span>
+              <div>
+                <strong>Canal liberado</strong>
+                <span>Tabela de atacado e concierge no WhatsApp.</span>
+              </div>
+            </li>
+          </ol>
 
-              <label class="role-option">
-                <input type="radio" name="user_role" value="Proprietário de Alfaiataria / Ateliê" checked>
-                <div class="role-option-box">
-                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-                    <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
-                  </svg>
-                  <span>Alfaiate / Ateliê</span>
-                  <small>Lotes & Parcerias</small>
-                </div>
-              </label>
+          <a href="cadastro/" class="cred-btn" data-cta="credenciamento">
+            <span>Fazer meu credenciamento</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </a>
 
-              <label class="role-option">
-                <input type="radio" name="user_role" value="Marca Própria / Private Label">
-                <div class="role-option-box">
-                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-                    <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path>
-                    <line x1="7" y1="7" x2="7.01" y2="7"></line>
-                  </svg>
-                  <span>Private Label</span>
-                  <small>Marca Própria</small>
-                </div>
-              </label>
+          <p class="cred-note">Cerca de 2 minutos &middot; Necess&aacute;rio CNPJ ativo</p>
 
-              <label class="role-option">
-                <input type="radio" name="user_role" value="Lojista / Boutique Multimarcas">
-                <div class="role-option-box">
-                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-                    <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
-                    <line x1="3" y1="6" x2="21" y2="6"></line>
-                    <path d="M16 10a4 4 0 0 1-8 0"></path>
-                  </svg>
-                  <span>Lojista Premium</span>
-                  <small>Grade & Multimarcas</small>
-                </div>
-              </label>
-
-            </div>
+          <div class="cred-alt">
+            <span>Prefere falar antes?</span>
+            <a href="#" data-wa-type="cta">Falar com a importadora</a>
           </div>
-
-          <!-- Campos de Dados -->
-          <div class="form-row-dual">
-            <div>
-              <label for="client_name" class="form-label">Seu Nome / Titular:</label>
-              <input type="text" id="client_name" class="input-field" placeholder="Ex: Roberto Silveira" required>
-            </div>
-            <div>
-              <label for="client_company" class="form-label">Alfaiataria ou Empresa:</label>
-              <input type="text" id="client_company" class="input-field"
-                placeholder="Ex: Sartoria Silveira / Marca de Moda">
-            </div>
-          </div>
-
-          <div class="form-row-dual">
-            <div>
-              <label for="client_city" class="form-label">Cidade / Estado:</label>
-              <input type="text" id="client_city" class="input-field" placeholder="Ex: São Paulo, SP">
-            </div>
-            <div>
-              <label for="client_intent" class="form-label">Principal Interesse:</label>
-              <select id="client_intent" class="select-field">
-                <option value="Consultar projeto de Produção em Private Label">Produção em Private Label (Marca Própria)
-                </option>
-                <option value="Solicitar catálogo de lotes para ateliê">Consultar lotes para alfaiataria</option>
-                <option value="Agendar apresentação de mostruário presencial">Agendar visita / Mostruário presencial
-                </option>
-                <option value="Consultar condições para revenda em Boutique Multimarcas">Condições para boutique
-                  multimarcas</option>
-              </select>
-            </div>
-          </div>
-
-          <!-- Prévia da Mensagem Gerada -->
-          <div class="concierge-preview-card">
-            <div class="concierge-preview-title">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
-              </svg>
-              <span>Prévia da mensagem que será enviada no WhatsApp:</span>
-            </div>
-            <p id="concierge-preview-text" class="concierge-preview-text">
-              "Olá! Gostaria de falar com a representação oficial da Marina Yachting Brasil..."
-            </p>
-          </div>
-
-          <!-- Botão de Envio WhatsApp -->
-          <div class="concierge-submit-wrap">
-            <button type="submit" class="btn btn-whatsapp btn-lg" style="width: 100%; max-width: 480px;">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-                <path
-                  d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z" />
-              </svg>
-              <span>Iniciar Conversa com a Representação</span>
-            </button>
-            <p class="concierge-direct-direct">
-              Atendimento ágil direto no aplicativo. Sem intermediários ou robôs genéricos.
-            </p>
-          </div>
-
-        </form>
+        </aside>
 
       </div>
-
     </div>
   </section>
 

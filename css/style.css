@@ -1437,180 +1437,329 @@ textarea:focus-visible,
     grid-template-columns: 1fr;
   }
 }
-/* --- 11. CONCIERGE & ROTEADOR WHATSAPP B2B --- */
-.section-concierge {
+/* --- 11. CREDENCIAMENTO OFICIAL (CHAMADA PARA /cadastro) --- */
+.section-credenciamento {
   padding: 110px 0;
   background-color: var(--bg-alt);
   border-bottom: 1px solid var(--border-subtle);
+  scroll-margin-top: 96px; /* Impede que o header fixo cubra o título ao vir de uma âncora */
 }
 
-.concierge-wrapper {
-  background: var(--bg-surface);
-  border: 1px solid var(--border-gold);
-  padding: 48px 40px;
-  box-shadow: var(--shadow-card);
+/* Painel de conversão: acompanha o tema do site pelos tokens globais */
+.cred-panel {
+  --cred-ink: var(--text-title);
+  --cred-ink-soft: var(--text-muted);
+  --cred-hairline: var(--border-gold);
+
   position: relative;
-}
-
-.concierge-intro {
-  text-align: center;
-  max-width: 680px;
-  margin: 0 auto 36px;
-}
-
-.concierge-intro .section-title {
-  font-size: 2.3rem;
-}
-
-.concierge-intro p.text-muted {
-  font-size: 0.95rem;
-}
-
-.concierge-form {
-  max-width: 780px;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-}
-
-.form-group-role {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.form-label {
-  font-size: 0.78rem;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--text-title);
-  font-weight: 500;
-}
-
-.role-options-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 12px;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 0;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-top: 2px solid var(--c-gold);
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
 }
 
-.role-option {
-  position: relative;
-}
-
-.role-option input[type="radio"] {
+/* Brilho quente na diagonal do painel, sutil o bastante para não virar textura */
+.cred-panel::after {
+  content: '';
   position: absolute;
-  opacity: 0;
+  top: -40%;
+  right: -10%;
+  width: 60%;
+  height: 180%;
+  background: radial-gradient(ellipse at center, rgba(176, 150, 94, 0.1), transparent 68%);
   pointer-events: none;
 }
 
-.role-option-box {
+.cred-content {
+  padding: 52px 48px;
+  position: relative;
+  z-index: 1;
+}
+
+.cred-content .eyebrow {
+  margin-bottom: 1.1rem;
+}
+
+.cred-title {
+  font-family: var(--ff-display);
+  font-size: clamp(2rem, 3.2vw, 2.9rem);
+  font-weight: 400;
+  line-height: 1.16;
+  letter-spacing: 0.01em;
+  color: var(--cred-ink);
+  text-wrap: balance;
+  margin-bottom: 1rem;
+}
+
+.cred-title em {
+  font-style: italic;
+  color: var(--text-gold);
+}
+
+.cred-lead {
+  font-size: 1rem;
+  line-height: 1.75;
+  color: var(--cred-ink-soft);
+  max-width: 46ch;
+  margin-bottom: 2.1rem;
+}
+
+.cred-list {
+  list-style: none;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  text-align: center;
-  padding: 16px 10px;
-  background: var(--bg-body);
-  border: 1px solid var(--border-subtle);
-  cursor: pointer;
-  transition: all var(--transition-fast);
+  gap: 1.2rem;
 }
 
-.role-option-box svg {
-  color: var(--c-navy-deep);
-  margin-bottom: 6px;
-}
-
-[data-theme="dark"] .role-option-box svg {
-  color: var(--c-gold);
-}
-
-.role-option-box span {
-  font-size: 0.8rem;
-  font-weight: 500;
-  color: var(--text-title);
-}
-
-.role-option-box small {
-  font-size: 0.68rem;
-  color: var(--text-muted);
-  margin-top: 2px;
-}
-
-.role-option input[type="radio"]:checked + .role-option-box {
-  background: var(--bg-surface);
-  border-color: var(--c-gold);
-  box-shadow: 0 0 14px rgba(176, 150, 94, 0.2);
-}
-
-.form-row-dual {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 18px;
-}
-
-.input-field,
-.select-field,
-.textarea-field {
-  width: 100%;
-  background: var(--bg-body);
-  border: 1px solid var(--border-subtle);
-  padding: 13px 16px;
-  color: var(--text-title);
-  font-size: 0.88rem;
-  transition: all var(--transition-fast);
-}
-
-.input-field:focus,
-.select-field:focus,
-.textarea-field:focus {
-  border-color: var(--c-gold);
-  background: var(--bg-surface);
-  box-shadow: 0 0 10px rgba(176, 150, 94, 0.2);
-}
-
-.select-field option {
-  background: var(--bg-surface);
-  color: var(--text-title);
-}
-
-.concierge-preview-card {
-  background: var(--bg-body);
-  border: 1px dashed var(--border-gold);
-  padding: 16px 20px;
-}
-
-.concierge-preview-title {
-  font-size: 0.7rem;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--text-gold);
-  margin-bottom: 6px;
+.cred-list li {
   display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.cred-list-icon {
+  flex-shrink: 0;
+  display: inline-flex;
   align-items: center;
-  gap: 6px;
-  font-weight: 600;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border: 1px solid var(--cred-hairline);
+  color: var(--text-gold);
 }
 
-.concierge-preview-text {
+.cred-list h3 {
   font-family: var(--ff-sans);
-  font-size: 0.92rem;
-  color: var(--text-main);
-  line-height: 1.6;
-  background: var(--bg-surface);
-  padding: 12px 16px;
-  border-left: 2px solid var(--c-gold);
-  border-radius: 1px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--cred-ink);
+  margin-bottom: 0.25rem;
 }
 
-.concierge-submit-wrap {
+.cred-list p {
+  font-size: 0.86rem;
+  line-height: 1.6;
+  color: var(--cred-ink-soft);
+  max-width: 42ch;
+}
+
+/* Coluna de ação: separada por um fio de ouro, não por um card aninhado */
+.cred-action {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 52px 48px;
+  background: var(--bg-card-alt);
+  border-left: 1px solid var(--cred-hairline);
+}
+
+.cred-action-label {
+  font-family: var(--ff-sans);
+  font-size: 0.72rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.26em;
+  color: var(--text-gold);
+  margin-bottom: 0.9rem;
+}
+
+.cred-action-text {
+  font-size: 0.92rem;
+  line-height: 1.7;
+  color: var(--cred-ink-soft);
+  margin-bottom: 1.8rem;
+}
+
+.cred-steps {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin-bottom: 2rem;
+}
+
+.cred-steps li {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: 13px;
+  padding-bottom: 1.1rem;
+}
+
+.cred-steps li:last-child {
+  padding-bottom: 0;
+}
+
+/* Fio vertical ligando os passos, encerrado no último */
+.cred-steps li::before {
+  content: '';
+  position: absolute;
+  left: 12px;
+  top: 26px;
+  bottom: 0;
+  width: 1px;
+  background: var(--cred-hairline);
+}
+
+.cred-steps li:last-child::before {
+  display: none;
+}
+
+.cred-step-num {
+  position: relative;
+  z-index: 1;
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  border: 1px solid var(--cred-hairline);
+  background: var(--bg-card-alt);
+  font-family: var(--ff-sans);
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--text-gold);
+}
+
+.cred-steps strong {
+  display: block;
+  font-family: var(--ff-sans);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--cred-ink);
+  margin-bottom: 0.15rem;
+}
+
+.cred-steps span:not(.cred-step-num) {
+  display: block;
+  font-size: 0.8rem;
+  line-height: 1.55;
+  color: var(--cred-ink-soft);
+}
+
+.cred-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  width: 100%;
+  padding: 17px 26px;
+  font-family: var(--ff-sans);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  text-align: center;
+  border-radius: 1px;
+  background: var(--c-gold);
+  border: 1px solid var(--c-gold);
+  color: var(--c-navy-deep); /* Navy sobre ouro: ~6.5:1, legível nos dois temas */
+  box-shadow: 0 6px 20px rgba(176, 150, 94, 0.22);
+  transition: background var(--transition-fast), border-color var(--transition-fast),
+    transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.cred-btn svg {
+  transition: transform var(--transition-fast);
+}
+
+.cred-btn:hover {
+  background: var(--c-gold-hover);
+  border-color: var(--c-gold-hover);
+  color: var(--c-white-sail);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(176, 150, 94, 0.32);
+}
+
+.cred-btn:hover svg {
+  transform: translateX(4px);
+}
+
+.cred-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 14px rgba(176, 150, 94, 0.24);
+}
+
+.cred-btn:focus-visible {
+  outline: 2px solid var(--c-gold);
+  outline-offset: 3px;
+}
+
+.cred-note {
+  margin-top: 0.95rem;
+  font-size: 0.76rem;
+  letter-spacing: 0.02em;
+  color: var(--cred-ink-soft);
   text-align: center;
 }
 
-.concierge-direct-direct {
-  margin-top: 12px;
-  font-size: 0.76rem;
-  color: var(--text-muted);
+.cred-alt {
+  margin-top: 1.8rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--cred-hairline);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: center;
+  gap: 7px;
+  font-size: 0.84rem;
+  color: var(--cred-ink-soft);
+}
+
+.cred-alt a {
+  color: var(--text-gold);
+  font-weight: 500;
+  border-bottom: 1px solid var(--border-gold);
+  padding-bottom: 1px;
+  transition: color var(--transition-fast), border-color var(--transition-fast);
+}
+
+.cred-alt a:hover {
+  color: var(--text-title);
+  border-bottom-color: var(--text-title);
+}
+
+@media (max-width: 940px) {
+  .cred-panel {
+    grid-template-columns: 1fr;
+  }
+
+  .cred-action {
+    border-left: none;
+    border-top: 1px solid var(--cred-hairline);
+  }
+
+  .cred-panel::after {
+    display: none;
+  }
+
+  /* Empilhado, a coluna de ação herda a largura inteira: contém o alvo de clique */
+  .cred-action-text,
+  .cred-steps,
+  .cred-btn,
+  .cred-note,
+  .cred-alt {
+    max-width: 470px;
+  }
+}
+
+@media (max-width: 560px) {
+  .cred-action-text,
+  .cred-steps,
+  .cred-btn,
+  .cred-note,
+  .cred-alt {
+    max-width: none;
+  }
 }
 
 /* --- 12. SALÃO PRIVADO & VISITAS --- */
@@ -2358,23 +2507,27 @@ textarea:focus-visible,
     padding: 22px 18px;
   }
 
-  /* Form Concierge Mobile */
-  .section-concierge {
-    padding: 48px 0;
+  /* Credenciamento Mobile */
+  .section-credenciamento {
+    padding: 56px 0;
   }
 
-  .concierge-form {
-    padding: 22px 16px;
+  .cred-content,
+  .cred-action {
+    padding: 34px 22px;
   }
 
-  .role-options-grid {
-    grid-template-columns: 1fr;
-    gap: 10px;
+  .cred-lead {
+    margin-bottom: 1.8rem;
   }
 
-  .form-row-dual {
-    grid-template-columns: 1fr;
-    gap: 14px;
+  .cred-list {
+    gap: 1.15rem;
+  }
+
+  .cred-btn {
+    padding: 16px 20px;
+    letter-spacing: 0.1em;
   }
 
   .input-field,

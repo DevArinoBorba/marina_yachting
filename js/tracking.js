@@ -152,10 +152,9 @@
   }
 
   // ==========================================================================
-  // 5. RASTREIO DE FORMULÁRIOS (CONCIERGE DA HOME + FICHA DE CADASTRO)
+  // 5. RASTREIO DO FORMULÁRIO DE CREDENCIAMENTO (/cadastro)
   // ==========================================================================
   const FORMS = {
-    "concierge-form": { name: "Concierge B2B (home)", startEvent: "concierge_start" },
     "b2b-revenda-form": { name: "Ficha de credenciamento B2B", startEvent: "cadastro_start" }
   };
 
@@ -172,26 +171,29 @@
         form_name: FORMS[form.id].name
       });
     }, true);
+  }
 
-    // Envio do Concierge da home (roteador inteligente de WhatsApp)
-    document.addEventListener("submit", (e) => {
-      const form = e.target;
-      if (!form || form.id !== "concierge-form") return;
+  // ==========================================================================
+  // 6. RASTREIO DO CTA DE CREDENCIAMENTO (HOME -> /cadastro)
+  // ==========================================================================
+  function initCadastroCtaTracking() {
+    document.addEventListener("click", (e) => {
+      if (!e.target || !e.target.closest) return;
 
-      const role = form.querySelector('input[name="user_role"]:checked');
-      const intent = document.getElementById("client_intent");
-      const city = document.getElementById("client_city");
+      const link = e.target.closest('a[href*="cadastro"]');
+      if (!link) return;
 
-      pushEvent("concierge_submit", {
-        lead_role: role ? role.value : null,
-        lead_intent: intent ? intent.value : null,
-        lead_city: city ? city.value.trim() : null
+      const section = link.closest("section");
+      pushEvent("cadastro_cta_click", {
+        cta_id: link.getAttribute("data-cta") || "link",
+        cta_section: (section && section.id) || getPageContext().page_section,
+        cta_text: (link.textContent || "").trim().slice(0, 80)
       });
     }, true);
   }
 
   // ==========================================================================
-  // 6. RASTREIO DO MOSTRUÁRIO (FILTROS E FICHA TÉCNICA)
+  // 7. RASTREIO DO MOSTRUÁRIO (FILTROS E FICHA TÉCNICA)
   // ==========================================================================
   function initCatalogTracking() {
     document.addEventListener("click", (e) => {
@@ -218,7 +220,7 @@
   }
 
   // ==========================================================================
-  // 7. API PÚBLICA (consumida por js/lp-revenda.js no envio do lead)
+  // 8. API PÚBLICA (consumida por js/lp-revenda.js no envio do lead)
   // ==========================================================================
   window.MYTrack = {
     push: pushEvent,
@@ -227,7 +229,7 @@
   };
 
   // ==========================================================================
-  // 8. INICIALIZAÇÃO
+  // 9. INICIALIZAÇÃO
   // ==========================================================================
   const context = getPageContext();
   const campaign = captureCampaign();
@@ -248,6 +250,7 @@
   function initListeners() {
     initWhatsAppTracking();
     initFormTracking();
+    initCadastroCtaTracking();
     initCatalogTracking();
   }
 
