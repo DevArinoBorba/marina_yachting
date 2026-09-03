@@ -4,12 +4,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  <!-- SEO & Otimização para Tráfego Pago B2B -->
-  <title>Cadastro de Lojista B2B · Marina Yachting Brasil</title>
+
+  <!-- SEO & Otimização para Tráfego Pago B2B (Google Ads / Meta Ads) -->
+  <title>Revenda Oficial Marina Yachting Brasil · Atacado B2B para Lojistas</title>
   <meta name="description"
-    content="Ficha de credenciamento oficial de lojistas e alfaiatarias Marina Yachting Brasil (Gênova 1878). Libere a tabela de preços de atacado e atendimento exclusivo no WhatsApp.">
+    content="Seja revendedor oficial da Marina Yachting (Gênova, 1878) no Brasil. Alfaiataria e vestuário masculino italiano no atacado para alfaiatarias, marcas próprias e boutiques multimarcas. Solicite a tabela de preços.">
   <meta name="robots" content="index, follow">
+
+  <!-- Open Graph: preview correto ao compartilhar o anúncio ou o link -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Revenda Oficial Marina Yachting Brasil · Atacado B2B">
+  <meta property="og:description"
+    content="Marca italiana de Gênova desde 1878. Tabela de atacado, exclusividade territorial e concierge comercial para lojistas com CNPJ.">
+  <meta property="og:image" content="../imgs/3.jpeg">
+  <meta property="og:locale" content="pt_BR">
 
   <!-- Google Tag Manager (container único: Google Ads, GA4 e Meta Pixel) -->
   <script src="../js/tracking.js"></script>
@@ -27,85 +35,6 @@
 
   <!-- Folha de Estilos Otimizada -->
   <link rel="stylesheet" href="../css/lp-revenda.css">
-
-  <style>
-    /* Ajustes específicos para a página de Cadastro focada */
-    body {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      background: #F9F8F5;
-    }
-
-    .cadastro-main {
-      flex: 1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 3.5rem 0 4.5rem;
-    }
-
-    .cadastro-header {
-      background: #FFFFFF;
-      border-bottom: 1px solid rgba(176, 150, 94, 0.25);
-      padding: 1.2rem 0;
-      box-shadow: 0 2px 10px rgba(14, 31, 51, 0.04);
-    }
-
-    .cadastro-header-content {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .cadastro-logo-wrap {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-    }
-
-    .cadastro-logo-img {
-      height: 46px;
-      width: auto;
-    }
-
-    .cadastro-badge-tag {
-      border-left: 1px solid var(--c-sand);
-      padding-left: 1rem;
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      color: var(--c-gold-hover);
-      font-weight: 600;
-      line-height: 1.25;
-    }
-
-    .cadastro-security-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.45rem;
-      background: rgba(14, 31, 51, 0.04);
-      border: 1px solid rgba(14, 31, 51, 0.1);
-      padding: 0.4rem 0.85rem;
-      border-radius: 9999px;
-      font-size: 0.78rem;
-      color: var(--c-navy-deep);
-      font-weight: 500;
-    }
-
-    .cadastro-security-pill svg {
-      color: var(--c-gold-hover);
-    }
-
-    @media (max-width: 640px) {
-      .cadastro-security-pill {
-        display: none;
-      }
-      .cadastro-main {
-        padding: 1.8rem 0 2.5rem;
-      }
-    }
-  </style>
 </head>
 
 <body>
@@ -117,299 +46,494 @@
   <!-- End Google Tag Manager (noscript) -->
 
   <!-- ======================================================================
-       1. CABEÇALHO LIMPO COM LOGOTIPO OFICIAL
+       1. CABEÇALHO
        ====================================================================== -->
-  <header class="cadastro-header">
-    <div class="container cadastro-header-content">
-      <div class="cadastro-logo-wrap">
-        <img src="../imgs/logo-dark.png" alt="Marina Yachting Brasil Since 1878" class="cadastro-logo-img">
-        <span class="cadastro-badge-tag">Credenciamento<br>de Revenda B2B</span>
+  <header class="cad-header">
+    <div class="container cad-header-content">
+      <div class="cad-logo-wrap">
+        <img src="../imgs/logo-dark.png" alt="Marina Yachting Brasil Since 1878" class="cad-logo-img">
+        <span class="cad-badge-tag">Representação<br>Oficial Brasil</span>
       </div>
 
-      <div class="cadastro-security-pill">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
-          <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
-        </svg>
-        <span>Ambiente Seguro e Exclusivo para Empresas</span>
-      </div>
+      <a href="#ficha" class="cad-header-cta" data-cta="header">Solicitar tabela de atacado</a>
     </div>
   </header>
 
   <!-- ======================================================================
-       2. ÁREA CENTRAL: FORMULÁRIO B2B QUALIFICADO
+       2. HERO: PROPOSTA + FICHA DE CREDENCIAMENTO
        ====================================================================== -->
-  <main class="cadastro-main">
+  <section class="cad-hero">
     <div class="container">
-      
-      <div class="lp-form-wrapper">
-        
-        <div class="lp-form-header">
-          <span class="lp-form-header-badge">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-            Credenciamento Oficial de Lojista
+      <div class="cad-hero-grid">
+
+        <div class="cad-hero-content">
+          <span class="cad-tagline">
+            <span class="cad-tagline-line"></span>
+            Gênova, Itália &middot; Desde 1878
           </span>
-          <h1 class="lp-form-main-headline">Tenha peças exclusivas da <em>alfaiataria Italiana</em> na sua loja.</h1>
-          <div class="lp-form-title-secondary">Solicite a Tabela de Preços Atacado</div>
-          <p class="lp-form-subtitle">
-            Preencha os dados cadastrais da sua empresa abaixo. Ao validar o CNPJ, o canal prioritário do nosso <strong>Concierge Comercial no WhatsApp</strong> será liberado instantaneamente.
+
+          <h1 class="cad-hero-title">
+            Seja revendedor oficial da <em>Marina Yachting</em> no Brasil
+          </h1>
+
+          <p class="cad-hero-subtitle">
+            Alfaiataria e vestuário masculino italiano no atacado, direto da representação oficial.
+            Para alfaiatarias, ateliês, marcas próprias e boutiques multimarcas que querem uma
+            grife europeia legítima na vitrine.
           </p>
         </div>
 
-        <div class="lp-form-body">
+        <!-- Reforço visual: no mobile aparece depois da ficha, no desktop abaixo do texto -->
+        <div class="cad-hero-extra">
+          <ul class="cad-hero-points">
+            <li>
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+              <span>Tabela de preços de atacado liberada após validação do CNPJ</span>
+            </li>
+            <li>
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+              <span>Exclusividade de lote negociada conforme a praça da sua loja</span>
+            </li>
+            <li>
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+              <span>Atendimento direto com a representação, sem intermediários</span>
+            </li>
+          </ul>
+
+          <div class="cad-hero-media">
+            <img src="../imgs/3.jpeg" alt="Blazer transpassado em lã virgem italiana da coleção Marina Yachting"
+              loading="eager" width="1142" height="1600">
+            <div class="cad-hero-media-tag">
+              <strong>Since 1878</strong>
+              <span>The Original Italian Marine Lifestyle</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- FICHA DE CREDENCIAMENTO -->
+        <div class="cad-form-card" id="ficha">
+          <div class="cad-form-head">
+            <span class="cad-form-eyebrow">Ficha de credenciamento</span>
+            <h2 class="cad-form-title">Solicite a tabela de atacado</h2>
+            <p class="cad-form-sub">
+              Três campos. A representação valida o CNPJ e envia as condições comerciais
+              pelo WhatsApp.
+            </p>
+          </div>
+
           <form id="b2b-revenda-form" novalidate>
-            
-            <div class="lp-form-grid">
-              
-              <!-- Nome do Responsável -->
-              <div class="lp-form-group">
-                <label for="b2b-nome" class="lp-form-label">Nome do Responsável / Comprador *</label>
-                <div class="lp-input-wrap">
-                  <span class="lp-input-icon">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                      <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                      <circle cx="12" cy="7" r="4"></circle>
-                    </svg>
-                  </span>
-                  <input type="text" id="b2b-nome" class="lp-form-input" placeholder="Ex: Rodrigo Santos" required>
-                </div>
-              </div>
 
-              <!-- WhatsApp / Telefone -->
-              <div class="lp-form-group">
-                <label for="b2b-telefone" class="lp-form-label">Telefone / WhatsApp *</label>
-                <div class="lp-input-wrap">
-                  <span class="lp-input-icon">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                      <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
-                    </svg>
-                  </span>
-                  <input type="tel" id="b2b-telefone" class="lp-form-input" placeholder="(00) 00000-0000" required>
-                </div>
+            <div class="lp-form-group">
+              <label for="b2b-nome" class="lp-form-label">Nome do responsável *</label>
+              <div class="lp-input-wrap">
+                <span class="lp-input-icon">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="12" cy="7" r="4"></circle>
+                  </svg>
+                </span>
+                <input type="text" id="b2b-nome" class="lp-form-input" placeholder="Ex: Rodrigo Santos"
+                  autocomplete="name" required>
               </div>
+            </div>
 
-              <!-- E-mail -->
-              <div class="lp-form-group">
-                <label for="b2b-email" class="lp-form-label">E-mail Corporativo *</label>
-                <div class="lp-input-wrap">
-                  <span class="lp-input-icon">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                      <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-                      <polyline points="22,6 12,13 2,6"></polyline>
-                    </svg>
-                  </span>
-                  <input type="email" id="b2b-email" class="lp-form-input" placeholder="contato@sualoja.com.br" required>
-                </div>
+            <div class="lp-form-group">
+              <label for="b2b-telefone" class="lp-form-label">WhatsApp com DDD *</label>
+              <div class="lp-input-wrap">
+                <span class="lp-input-icon">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path
+                      d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
+                    </path>
+                  </svg>
+                </span>
+                <input type="tel" id="b2b-telefone" class="lp-form-input" placeholder="(00) 00000-0000"
+                  autocomplete="tel" inputmode="numeric" required>
               </div>
+            </div>
 
-              <!-- CNPJ -->
-              <div class="lp-form-group">
-                <label for="b2b-cnpj" class="lp-form-label">CNPJ da Empresa *</label>
-                <div class="lp-input-wrap">
-                  <span class="lp-input-icon">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                      <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
-                      <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
-                    </svg>
-                  </span>
-                  <input type="text" id="b2b-cnpj" class="lp-form-input" placeholder="00.000.000/0000-00" required>
-                </div>
+            <div class="lp-form-group">
+              <label for="b2b-cnpj" class="lp-form-label">CNPJ da empresa *</label>
+              <div class="lp-input-wrap">
+                <span class="lp-input-icon">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M3 21h18M5 21V7l8-4v18M19 21V11l-6-4"></path>
+                  </svg>
+                </span>
+                <input type="text" id="b2b-cnpj" class="lp-form-input" placeholder="00.000.000/0000-00"
+                  inputmode="numeric" required>
               </div>
-
-              <!-- Razão Social -->
-              <div class="lp-form-group">
-                <label for="b2b-razao" class="lp-form-label">Razão Social *</label>
-                <div class="lp-input-wrap">
-                  <span class="lp-input-icon">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                      <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
-                      <polyline points="9 22 9 12 15 12 15 22"></polyline>
-                    </svg>
-                  </span>
-                  <input type="text" id="b2b-razao" class="lp-form-input" placeholder="Razão Social completa" required>
-                </div>
-              </div>
-
-              <!-- Inscrição Estadual -->
-              <div class="lp-form-group">
-                <label for="b2b-inscricao" class="lp-form-label">Inscrição Estadual *</label>
-                <div class="lp-input-wrap">
-                  <span class="lp-input-icon">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                      <polyline points="14 2 14 8 20 8"></polyline>
-                    </svg>
-                  </span>
-                  <input type="text" id="b2b-inscricao" class="lp-form-input" placeholder="Número da Inscrição Estadual" required>
-                </div>
-                <label class="lp-checkbox-label">
-                  <input type="checkbox" id="b2b-isento">
-                  <span>Empresa Isenta de Inscrição Estadual</span>
-                </label>
-              </div>
-
-              <!-- CEP com Busca Automática -->
-              <div class="lp-form-group">
-                <label for="b2b-cep" class="lp-form-label">
-                  <span>CEP *</span>
-                  <span class="optional">(Busca automática)</span>
-                </label>
-                <div class="lp-input-wrap">
-                  <span class="lp-input-icon">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                      <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-                      <circle cx="12" cy="10" r="3"></circle>
-                    </svg>
-                  </span>
-                  <input type="text" id="b2b-cep" class="lp-form-input" placeholder="00000-000" maxlength="9" required>
-                  <div class="lp-cep-spinner" id="cep-spinner"></div>
-                </div>
-                <span class="lp-cep-feedback" id="cep-feedback"></span>
-              </div>
-
-              <!-- Endereço (Rua/Avenida) -->
-              <div class="lp-form-group">
-                <label for="b2b-logradouro" class="lp-form-label">Endereço (Rua / Avenida) *</label>
-                <div class="lp-input-wrap">
-                  <span class="lp-input-icon">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                      <line x1="3" y1="12" x2="21" y2="12"></line>
-                      <line x1="3" y1="6" x2="21" y2="6"></line>
-                      <line x1="3" y1="18" x2="21" y2="18"></line>
-                    </svg>
-                  </span>
-                  <input type="text" id="b2b-logradouro" class="lp-form-input" placeholder="Rua / Avenida" required>
-                </div>
-              </div>
-
-              <!-- Número -->
-              <div class="lp-form-group">
-                <label for="b2b-numero" class="lp-form-label">Número *</label>
-                <div class="lp-input-wrap">
-                  <span class="lp-input-icon">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                      <line x1="4" y1="9" x2="20" y2="9"></line>
-                      <line x1="4" y1="15" x2="20" y2="15"></line>
-                      <line x1="10" y1="3" x2="8" y2="21"></line>
-                      <line x1="16" y1="3" x2="14" y2="21"></line>
-                    </svg>
-                  </span>
-                  <input type="text" id="b2b-numero" class="lp-form-input" placeholder="123" required>
-                </div>
-              </div>
-
-              <!-- Complemento -->
-              <div class="lp-form-group">
-                <label for="b2b-complemento" class="lp-form-label">
-                  <span>Complemento</span>
-                  <span class="optional">(Opcional)</span>
-                </label>
-                <div class="lp-input-wrap">
-                  <span class="lp-input-icon">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                      <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
-                      <polyline points="2 17 12 22 22 17"></polyline>
-                      <polyline points="2 12 12 17 22 12"></polyline>
-                    </svg>
-                  </span>
-                  <input type="text" id="b2b-complemento" class="lp-form-input" placeholder="Sala, Loja, Galpão...">
-                </div>
-              </div>
-
-              <!-- Bairro -->
-              <div class="lp-form-group">
-                <label for="b2b-bairro" class="lp-form-label">Bairro</label>
-                <div class="lp-input-wrap">
-                  <span class="lp-input-icon">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                      <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-                      <circle cx="12" cy="10" r="3"></circle>
-                    </svg>
-                  </span>
-                  <input type="text" id="b2b-bairro" class="lp-form-input" placeholder="Bairro">
-                </div>
-              </div>
-
-              <!-- Cidade & Estado (UF) -->
-              <div class="lp-form-group">
-                <label for="b2b-cidade" class="lp-form-label">Cidade / UF *</label>
-                <div class="lp-input-wrap" style="display: flex; gap: 0.5rem;">
-                  <input type="text" id="b2b-cidade" class="lp-form-input" placeholder="Cidade" style="padding-left: 1rem; flex: 3;" required>
-                  <input type="text" id="b2b-uf" class="lp-form-input" placeholder="UF" maxlength="2" style="padding-left: 0.8rem; text-align: center; text-transform: uppercase; flex: 1;" required>
-                </div>
-              </div>
-
             </div>
 
             <!-- Feedback de Validação -->
             <div class="lp-form-feedback" id="form-feedback-msg"></div>
 
-            <!-- ÁREA DE LIBERAÇÃO DO WHATSAPP -->
-            <div class="lp-unlock-zone">
-              <div class="lp-step-indicator">
-                <span class="lp-step-dot"></span>
-                <span>Valide os dados cadastrais acima para liberar o atendimento no WhatsApp Oficial</span>
-              </div>
+            <button type="submit" id="btn-submit-step" class="lp-btn-submit-step">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+              </svg>
+              <span>Quero receber a tabela de preços</span>
+            </button>
 
-              <button type="submit" id="btn-submit-step" class="lp-btn-submit-step">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <!-- CARD DESBLOQUEADO DO WHATSAPP -->
+            <div id="whatsapp-unlocked-card" class="lp-whatsapp-unlocked-card">
+              <div class="lp-unlocked-header">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                  <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                </svg>
+                <span>Cadastro recebido!</span>
+              </div>
+              <p class="lp-unlocked-desc">
+                Clique abaixo para falar com o <strong>Concierge Comercial B2B</strong> no WhatsApp,
+                com seus dados já preenchidos:
+              </p>
+              <a id="btn-wa-direct" href="#" target="_blank" class="lp-btn-whatsapp-direct">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                  <path
+                    d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z" />
+                </svg>
+                <span>Falar com o concierge no WhatsApp</span>
+              </a>
+            </div>
+
+            <p class="cad-form-note">
+              Exclusivo para empresas com CNPJ ativo. Os demais dados cadastrais
+              (razão social, inscrição estadual e endereço de entrega) são confirmados
+              na conversa com o concierge.
+            </p>
+
+            <div class="lp-form-security">
+              <span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                   <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
                   <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
                 </svg>
-                <span>Validar Dados & Liberar Atendimento WhatsApp</span>
-              </button>
-
-              <!-- CARD DESBLOQUEADO DO WHATSAPP -->
-              <div id="whatsapp-unlocked-card" class="lp-whatsapp-unlocked-card">
-                <div class="lp-unlocked-header">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
-                  </svg>
-                  <span>Credenciamento Concluído com Sucesso!</span>
-                </div>
-                <p class="lp-unlocked-desc">
-                  Seus dados foram verificados. Clique no botão abaixo para falar diretamente com nosso <strong>Concierge Comercial B2B</strong> no WhatsApp com seus dados pré-carregados:
-                </p>
-                <a id="btn-wa-direct" href="#" target="_blank" class="lp-btn-whatsapp-direct">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
-                  </svg>
-                  <span>Iniciar Conversa no WhatsApp Oficial</span>
-                </a>
-              </div>
-
-              <div class="lp-form-security">
-                <span>
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
-                  Ambiente 100% Seguro
-                </span>
-                <span>
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
-                  Privacidade Garantida (LGPD)
-                </span>
-                <span>
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 14 14"></polyline></svg>
-                  Atendimento Comercial B2B
-                </span>
-              </div>
-
+                Ambiente seguro
+              </span>
+              <span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                </svg>
+                Dados protegidos (LGPD)
+              </span>
             </div>
 
           </form>
         </div>
 
       </div>
-
     </div>
-  </main>
+  </section>
 
   <!-- ======================================================================
-       3. RODAPÉ INSTITUCIONAL
+       3. O QUE O CREDENCIAMENTO LIBERA
+       ====================================================================== -->
+  <section class="lp-benefits">
+    <div class="container">
+      <div class="lp-section-header">
+        <div class="lp-section-category">Condições de revenda</div>
+        <h2 class="lp-section-title">O que o credenciamento libera</h2>
+        <p class="lp-section-desc">
+          O cadastro aprovado abre o canal comercial direto com a representação da marca no Brasil.
+        </p>
+      </div>
+
+      <div class="lp-benefits-grid">
+
+        <article class="lp-benefit-card">
+          <div class="lp-benefit-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path>
+              <line x1="7" y1="7" x2="7.01" y2="7"></line>
+            </svg>
+          </div>
+          <h3 class="lp-benefit-card-title">Tabela de atacado</h3>
+          <p class="lp-benefit-card-text">
+            Condições de compra por lote, enviadas assim que o CNPJ é validado pela representação.
+          </p>
+        </article>
+
+        <article class="lp-benefit-card">
+          <div class="lp-benefit-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+              <circle cx="12" cy="10" r="3"></circle>
+            </svg>
+          </div>
+          <h3 class="lp-benefit-card-title">Exclusividade de praça</h3>
+          <p class="lp-benefit-card-text">
+            Grade e volume negociados conforme a região da sua loja, preservando quem já opera ali.
+          </p>
+        </article>
+
+        <article class="lp-benefit-card">
+          <div class="lp-benefit-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+            </svg>
+          </div>
+          <h3 class="lp-benefit-card-title">Concierge dedicado</h3>
+          <p class="lp-benefit-card-text">
+            Atendimento direto no WhatsApp com a representação oficial. Sem revendas de terceiros.
+          </p>
+        </article>
+
+        <article class="lp-benefit-card">
+          <div class="lp-benefit-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
+              stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="7" width="20" height="14" rx="2"></rect>
+              <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+            </svg>
+          </div>
+          <h3 class="lp-benefit-card-title">Mostruário presencial</h3>
+          <p class="lp-benefit-card-text">
+            Salão privado com hora marcada ou visita ao seu ateliê com a maleta de amostras.
+          </p>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================================
+       4. A MARCA: GÊNOVA, 1878
+       ====================================================================== -->
+  <section class="cad-brand">
+    <div class="container">
+      <div class="cad-brand-grid">
+
+        <div class="cad-brand-media">
+          <img src="../imgs/Captura de tela 2026-08-29 175224.png"
+            alt="Showroom oficial Marina Yachting com peças da coleção em exposição" loading="lazy">
+        </div>
+
+        <div class="cad-brand-content">
+          <div class="lp-section-category">A marca</div>
+          <h2 class="lp-section-title">Uma casa italiana de <em>1878</em></h2>
+          <p class="cad-brand-text">
+            Nascida em Gênova, porto histórico do Mediterrâneo, a Marina Yachting construiu sua
+            identidade no vestuário náutico italiano — o <em>original italian marine lifestyle</em>.
+            A alfaiataria da casa combina lã virgem 110's, linhos nobres e o corte estruturado
+            que o mercado europeu reconhece.
+          </p>
+          <p class="cad-brand-text">
+            No Brasil, a marca opera por representação oficial: o lojista credenciado compra
+            direto, com procedência documentada e sem a cadeia de atravessadores que encarece
+            o produto importado.
+          </p>
+
+          <div class="cad-brand-marks">
+            <div>
+              <strong>1878</strong>
+              <span>Ano de fundação</span>
+            </div>
+            <div>
+              <strong>Gênova</strong>
+              <span>Origem italiana</span>
+            </div>
+            <div>
+              <strong>110's</strong>
+              <span>Lã virgem na alfaiataria</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================================
+       5. A COLEÇÃO
+       ====================================================================== -->
+  <section class="lp-showcase">
+    <div class="container">
+      <div class="lp-section-header">
+        <div class="lp-section-category">Coleção</div>
+        <h2 class="lp-section-title">O que entra na sua vitrine</h2>
+        <p class="lp-section-desc">
+          Alfaiataria estruturada, trajes de linho e peças de inspiração náutica.
+          A grade completa é apresentada no mostruário.
+        </p>
+      </div>
+
+      <div class="lp-showcase-grid">
+
+        <article class="lp-product-card">
+          <div class="lp-product-img-wrap">
+            <img src="../imgs/3.jpeg" alt="Blazer transpassado navy em lã virgem italiana" loading="lazy">
+            <span class="lp-product-badge">Lã Virgem 110's</span>
+          </div>
+          <div class="lp-product-info">
+            <div class="lp-product-ref">Alfaiataria estruturada</div>
+            <h3 class="lp-product-name">Blazers &amp; ternos transpassados</h3>
+            <p class="lp-product-specs">
+              Corte italiano, forro jacquard e botões em latão naval.
+            </p>
+          </div>
+        </article>
+
+        <article class="lp-product-card">
+          <div class="lp-product-img-wrap">
+            <img src="../imgs/2.jpeg" alt="Terno de linho claro italiano em cenário urbano de Roma" loading="lazy">
+            <span class="lp-product-badge">Linho Nobre</span>
+          </div>
+          <div class="lp-product-info">
+            <div class="lp-product-ref">Verão &amp; meia-estação</div>
+            <h3 class="lp-product-name">Trajes de linho e algodão</h3>
+            <p class="lp-product-specs">
+              Construção leve e desestruturada para o clima brasileiro.
+            </p>
+          </div>
+        </article>
+
+        <article class="lp-product-card">
+          <div class="lp-product-img-wrap">
+            <img src="../imgs/1.jpeg" alt="Smoking navy com lapela acetinada para trajes de cerimônia" loading="lazy">
+            <span class="lp-product-badge">Cerimônia</span>
+          </div>
+          <div class="lp-product-info">
+            <div class="lp-product-ref">Black tie</div>
+            <h3 class="lp-product-name">Smokings &amp; trajes de gala</h3>
+            <p class="lp-product-specs">
+              Lapela acetinada e acabamento de alfaiataria para eventos formais.
+            </p>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================================
+       6. PARA QUEM É
+       ====================================================================== -->
+  <section class="cad-profiles">
+    <div class="container">
+      <div class="lp-section-header">
+        <div class="lp-section-category">Perfil do credenciado</div>
+        <h2 class="lp-section-title">Para quem é o credenciamento</h2>
+      </div>
+
+      <div class="cad-profiles-grid">
+
+        <div class="cad-profile">
+          <h3>Alfaiatarias &amp; ateliês</h3>
+          <p>
+            Compra por lote para compor a vitrine com peças prontas de origem italiana,
+            ao lado do serviço sob medida da casa.
+          </p>
+        </div>
+
+        <div class="cad-profile">
+          <h3>Marcas próprias &amp; private label</h3>
+          <p>
+            Produção com a estrutura industrial italiana da marca para quem desenvolve
+            a própria etiqueta.
+          </p>
+        </div>
+
+        <div class="cad-profile">
+          <h3>Boutiques multimarcas</h3>
+          <p>
+            Grade completa com entrega programada e exclusividade de lote negociada
+            por região.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================================
+       7. PERGUNTAS FREQUENTES
+       ====================================================================== -->
+  <section class="lp-faq">
+    <div class="container">
+      <div class="lp-section-header">
+        <div class="lp-section-category">Dúvidas</div>
+        <h2 class="lp-section-title">Perguntas frequentes</h2>
+      </div>
+
+      <div class="lp-faq-grid">
+
+        <div class="lp-faq-item">
+          <h3 class="lp-faq-question">Preciso de CNPJ para comprar?</h3>
+          <p class="lp-faq-answer">
+            Sim. O credenciamento é exclusivo para pessoa jurídica — alfaiatarias, ateliês,
+            marcas próprias e boutiques multimarcas. Não há venda para pessoa física.
+          </p>
+        </div>
+
+        <div class="lp-faq-item">
+          <h3 class="lp-faq-question">Como recebo a tabela de preços?</h3>
+          <p class="lp-faq-answer">
+            Depois do envio da ficha, a representação valida o cadastro e envia as condições
+            comerciais pelo WhatsApp, no mesmo número que você informou.
+          </p>
+        </div>
+
+        <div class="lp-faq-item">
+          <h3 class="lp-faq-question">Consigo ver as peças antes de fechar pedido?</h3>
+          <p class="lp-faq-answer">
+            Sim. O atendimento presencial acontece no salão privado com hora marcada, ou por
+            visita ao seu ateliê com a maleta de amostras de tecidos e modelos de prova.
+          </p>
+        </div>
+
+        <div class="lp-faq-item">
+          <h3 class="lp-faq-question">Trabalho com marca própria. Também atendem?</h3>
+          <p class="lp-faq-answer">
+            Sim. A produção em private label é uma das frentes da representação, para quem
+            desenvolve a própria etiqueta com a estrutura industrial italiana da marca.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================================
+       8. CHAMADA FINAL
+       ====================================================================== -->
+  <section class="cad-final">
+    <div class="container">
+      <h2 class="cad-final-title">Comece pelo credenciamento</h2>
+      <p class="cad-final-text">
+        Nome, WhatsApp e CNPJ. A representação valida o cadastro e envia as condições
+        de atacado no mesmo dia útil.
+      </p>
+      <a href="#ficha" class="cad-final-btn" data-cta="rodape">
+        <span>Solicitar tabela de atacado</span>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <line x1="12" y1="5" x2="12" y2="19"></line>
+          <polyline points="19 12 12 19 5 12"></polyline>
+        </svg>
+      </a>
+    </div>
+  </section>
+
+  <!-- ======================================================================
+       9. RODAPÉ INSTITUCIONAL
        ====================================================================== -->
   <footer class="lp-footer">
     <div class="container">
-      
+
       <div class="lp-footer-logo">
         <img src="../imgs/logo-white.png" alt="Marina Yachting Brasil Since 1878">
       </div>
@@ -424,7 +548,8 @@
           © 2026 Marina Yachting Brasil · Todos os direitos reservados.
         </div>
         <div class="footer-credit">
-          <a href="https://www.oriumdigital.com.br/" target="_blank" rel="noopener noreferrer" class="orium-link" aria-label="Desenvolvido por Orium Digital">
+          <a href="https://www.oriumdigital.com.br/" target="_blank" rel="noopener noreferrer" class="orium-link"
+            aria-label="Desenvolvido por Orium Digital">
             <span class="credit-text">Desenvolvido por</span>
             <img src="../imgs/orium-logo.png" alt="Orium Digital" class="orium-logo-img" width="91" height="22">
           </a>

@@ -1218,3 +1218,495 @@ a {
     gap: 0.8rem;
   }
 }
+
+/* ==========================================================================
+   11. LANDING DE CREDENCIAMENTO (/cadastro) — TRÁFEGO PAGO GOOGLE & META
+   ========================================================================== */
+
+/* --- Cabeçalho --- */
+.cad-header {
+  background: #FFFFFF;
+  border-bottom: 1px solid rgba(176, 150, 94, 0.25);
+  padding: 1rem 0;
+  box-shadow: 0 2px 10px rgba(14, 31, 51, 0.04);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+
+.cad-header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.cad-logo-wrap {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.cad-logo-img {
+  height: 42px;
+  width: auto;
+}
+
+.cad-badge-tag {
+  border-left: 1px solid var(--c-sand);
+  padding-left: 1rem;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--c-gold-hover);
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+.cad-header-cta {
+  display: inline-flex;
+  align-items: center;
+  background: var(--c-navy-deep);
+  color: var(--c-white-sail);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.8rem 1.5rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--c-navy-deep);
+  transition: var(--transition);
+  white-space: nowrap;
+}
+
+.cad-header-cta:hover {
+  background: var(--c-gold);
+  border-color: var(--c-gold);
+  color: var(--c-navy-deep);
+}
+
+/* --- Hero: proposta à esquerda, ficha à direita --- */
+.cad-hero {
+  position: relative;
+  padding: 3.5rem 0 4.5rem;
+  background: var(--c-navy-deep);
+  overflow: hidden;
+}
+
+.cad-hero::before {
+  content: '';
+  position: absolute;
+  top: -25%;
+  left: -8%;
+  width: 640px;
+  height: 640px;
+  background: radial-gradient(circle, rgba(176, 150, 94, 0.16) 0%, transparent 68%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.cad-hero-grid {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  grid-template-areas:
+    "proposta ficha"
+    "reforco  ficha";
+  gap: 2rem 3.5rem;
+  align-items: start;
+}
+
+.cad-hero-content { grid-area: proposta; }
+.cad-hero-extra   { grid-area: reforco; }
+.cad-form-card    { grid-area: ficha; }
+
+.cad-tagline {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  color: var(--c-gold-light);
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  margin-bottom: 1.2rem;
+}
+
+.cad-tagline-line {
+  width: 30px;
+  height: 1px;
+  background: var(--c-gold);
+}
+
+.cad-hero-title {
+  font-family: var(--ff-display);
+  font-size: clamp(2.3rem, 4vw, 3.3rem);
+  font-weight: 400;
+  line-height: 1.12;
+  color: var(--c-white-sail);
+  text-wrap: balance;
+  margin-bottom: 1.3rem;
+}
+
+.cad-hero-title em {
+  font-style: italic;
+  color: var(--c-gold-light);
+}
+
+.cad-hero-subtitle {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  font-weight: 300;
+  color: #B9C4CF;
+  max-width: 54ch;
+  margin-bottom: 1.8rem;
+}
+
+.cad-hero-points {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 2.2rem;
+}
+
+.cad-hero-points li {
+  display: flex;
+  align-items: flex-start;
+  gap: 11px;
+  font-size: 0.93rem;
+  line-height: 1.5;
+  color: #DCE3EA;
+}
+
+.cad-hero-points svg {
+  flex-shrink: 0;
+  margin-top: 3px;
+  color: var(--c-gold-light);
+}
+
+.cad-hero-media {
+  position: relative;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  border: 1px solid rgba(176, 150, 94, 0.35);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+}
+
+.cad-hero-media img {
+  display: block;
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  object-position: center 22%;
+}
+
+.cad-hero-media-tag {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  padding: 1.5rem 1.4rem 1.1rem;
+  background: linear-gradient(to top, rgba(14, 31, 51, 0.94), transparent);
+}
+
+.cad-hero-media-tag strong {
+  display: block;
+  font-family: var(--ff-display);
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--c-gold-light);
+  line-height: 1.1;
+}
+
+.cad-hero-media-tag span {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--c-sand);
+}
+
+/* --- Card da ficha de credenciamento --- */
+.cad-form-card {
+  background: #FFFFFF;
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(176, 150, 94, 0.45);
+  box-shadow: var(--shadow-elevated);
+  padding: 2.2rem 2rem;
+  scroll-margin-top: 90px;
+}
+
+.cad-form-head {
+  margin-bottom: 1.6rem;
+}
+
+.cad-form-eyebrow {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--c-gold-hover);
+  margin-bottom: 0.6rem;
+}
+
+.cad-form-title {
+  font-family: var(--ff-display);
+  font-size: 1.95rem;
+  font-weight: 600;
+  line-height: 1.15;
+  color: var(--c-navy-deep);
+  margin-bottom: 0.6rem;
+}
+
+.cad-form-sub {
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: #5C6672;
+}
+
+.cad-form-card .lp-form-group {
+  margin-bottom: 1.1rem;
+}
+
+.cad-form-note {
+  margin-top: 1rem;
+  font-size: 0.78rem;
+  line-height: 1.55;
+  color: #6B7480;
+}
+
+/* --- A marca --- */
+.cad-brand {
+  padding: 5rem 0;
+  background: var(--c-sand-light);
+}
+
+.cad-brand-grid {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 3.5rem;
+  align-items: center;
+}
+
+.cad-brand-media {
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+  border: 1px solid rgba(14, 31, 51, 0.08);
+}
+
+.cad-brand-media img {
+  display: block;
+  width: 100%;
+  height: 440px;
+  object-fit: cover;
+}
+
+.cad-brand-content .lp-section-title {
+  text-align: left;
+  margin-bottom: 1.2rem;
+}
+
+.cad-brand-content .lp-section-title em {
+  font-style: italic;
+  color: var(--c-gold-hover);
+}
+
+.cad-brand-content .lp-section-category {
+  text-align: left;
+}
+
+.cad-brand-text {
+  font-size: 0.98rem;
+  line-height: 1.75;
+  color: #55585D;
+  margin-bottom: 1rem;
+}
+
+.cad-brand-text em {
+  font-style: italic;
+  color: var(--c-navy-deep);
+}
+
+.cad-brand-marks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2.4rem;
+  margin-top: 1.8rem;
+  padding-top: 1.6rem;
+  border-top: 1px solid rgba(176, 150, 94, 0.35);
+}
+
+.cad-brand-marks strong {
+  display: block;
+  font-family: var(--ff-display);
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: var(--c-navy-deep);
+  line-height: 1.1;
+}
+
+.cad-brand-marks span {
+  font-size: 0.76rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--c-gold-hover);
+}
+
+/* --- Perfis atendidos --- */
+.cad-profiles {
+  padding: 5rem 0;
+  background: #FFFFFF;
+  border-top: 1px solid rgba(14, 31, 51, 0.06);
+}
+
+.cad-profiles-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.8rem;
+}
+
+.cad-profile {
+  padding: 1.8rem 1.6rem;
+  border: 1px solid rgba(176, 150, 94, 0.4);
+  background: var(--c-white-sail);
+  transition: var(--transition);
+}
+
+.cad-profile:hover {
+  border-color: var(--c-gold);
+  box-shadow: var(--shadow-card);
+  background: #FFFFFF;
+}
+
+.cad-profile h3 {
+  font-family: var(--ff-display);
+  font-size: 1.35rem;
+  font-weight: 600;
+  color: var(--c-navy-deep);
+  margin-bottom: 0.6rem;
+}
+
+.cad-profile p {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: #55585D;
+}
+
+/* --- Chamada final --- */
+.cad-final {
+  padding: 4.5rem 0;
+  background: var(--c-navy-deep);
+  text-align: center;
+}
+
+.cad-final-title {
+  font-family: var(--ff-display);
+  font-size: clamp(1.9rem, 3vw, 2.6rem);
+  font-weight: 400;
+  color: var(--c-white-sail);
+  margin-bottom: 0.9rem;
+}
+
+.cad-final-text {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: #B9C4CF;
+  max-width: 52ch;
+  margin: 0 auto 2rem;
+}
+
+.cad-final-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  background: var(--c-gold);
+  color: var(--c-navy-deep);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 1.05rem 2.2rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--c-gold);
+  box-shadow: var(--shadow-gold);
+  transition: var(--transition);
+}
+
+.cad-final-btn:hover {
+  background: var(--c-gold-light);
+  border-color: var(--c-gold-light);
+  transform: translateY(-2px);
+}
+
+.cad-final-btn svg {
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.cad-final-btn:hover svg {
+  transform: translateY(3px);
+}
+
+/* --- Responsivo --- */
+@media (max-width: 1024px) {
+  .cad-hero-grid {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "proposta"
+      "ficha"
+      "reforco";
+    gap: 2.2rem;
+  }
+
+  .cad-brand-grid {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  .cad-brand-media {
+    order: 2;
+  }
+
+  .cad-brand-media img {
+    height: 340px;
+  }
+
+  .cad-profiles-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 760px) {
+  .cad-header-cta {
+    display: none; /* No mobile o formulário já está na primeira rolagem */
+  }
+
+  .cad-hero {
+    padding: 2.5rem 0 3rem;
+  }
+
+  .cad-hero-media img {
+    height: 220px;
+  }
+
+  .cad-form-card {
+    padding: 1.7rem 1.3rem;
+  }
+
+  .cad-brand,
+  .cad-profiles,
+  .cad-final {
+    padding: 3.2rem 0;
+  }
+
+  .cad-brand-marks {
+    gap: 1.6rem;
+  }
+
+  .cad-final-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}

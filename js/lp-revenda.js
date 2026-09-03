@@ -269,7 +269,7 @@ function initFormSubmission() {
 
     if (hasError) {
       if (feedbackMsg) {
-        feedbackMsg.textContent = 'Por favor, preencha todos os campos destacados para liberar o atendimento prioritário.';
+        feedbackMsg.textContent = 'Confira os campos destacados para concluir o cadastro.';
         feedbackMsg.classList.add('is-error');
       }
       if (firstErrorElement) {
@@ -286,28 +286,32 @@ function initFormSubmission() {
     submitBtn.disabled = true;
     submitBtn.innerHTML = `
       <span class="lp-btn-spinner"></span>
-      <span>Validando dados...</span>
+      <span>Enviando cadastro...</span>
     `;
 
     // ========================================================================
     // PREPARAÇÃO DO PAYLOAD CONFORME ESPECIFICAÇÃO
     // ========================================================================
-    const ieValue = isIsento ? 'ISENTO' : (inscricao ? inscricao.value.trim() : 'ISENTO');
+    // A landing de captação pede apenas nome, WhatsApp e CNPJ; os demais campos são
+    // confirmados pelo concierge na conversa. As chaves seguem completas para preservar
+    // as colunas já existentes na planilha do Google Sheets.
+    const val = (el) => (el && typeof el.value === 'string') ? el.value.trim() : '';
+    const ieValue = isIsento ? 'ISENTO' : val(inscricao);
 
     const payload = {
-      nome: nome.value.trim(),
-      whatsapp: telefone.value.trim(),
-      email: email.value.trim(),
-      cnpj: cnpj.value.trim(),
-      razao_social: razaoSocial.value.trim(),
+      nome: val(nome),
+      whatsapp: val(telefone),
+      email: val(email),
+      cnpj: val(cnpj),
+      razao_social: val(razaoSocial),
       ie: ieValue,
-      cep: cep.value.trim(),
-      endereco: logradouro.value.trim(),
-      numero: numero.value.trim(),
-      complemento: complemento ? complemento.value.trim() : '',
-      bairro: bairro ? bairro.value.trim() : '',
-      cidade: cidade.value.trim(),
-      uf: uf.value.trim()
+      cep: val(cep),
+      endereco: val(logradouro),
+      numero: val(numero),
+      complemento: val(complemento),
+      bairro: val(bairro),
+      cidade: val(cidade),
+      uf: val(uf)
     };
 
     // Salva localmente em cache para conveniência do usuário
@@ -325,24 +329,40 @@ function initFormSubmission() {
     }
 
     // ========================================================================
-    // MENSAGEM EXECUTIVA PARA O WHATSAPP (MODELO OFICIAL COM EMOJIS)
+    // MENSAGEM EXECUTIVA PARA O WHATSAPP
+    // Monta somente com os campos preenchidos: a landing curta envia três deles,
+    // e uma ficha completa continua produzindo a mensagem inteira.
     // ========================================================================
-    const compText = payload.complemento ? ` (${payload.complemento})` : '';
-    const bairroText = payload.bairro ? ` - ${payload.bairro}` : '';
+    const SEPARADOR = '━━━━━━━━━━━━━━━━━━━━━━━━━━━━';
+    const linhas = ['*CREDENCIAMENTO B2B — MARINA YACHTING BRASIL*', SEPARADOR];
 
-    const whatsappMessage = 
-`*CREDENCIAMENTO B2B — MARINA YACHTING BRASIL*
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-👤 *Responsável:* ${payload.nome}
-🏢 *Razão Social:* ${payload.razao_social}
-📋 *CNPJ:* ${payload.cnpj}
-📑 *Inscrição Estadual:* ${payload.ie}
-📞 *Telefone/WhatsApp:* ${payload.whatsapp}
-✉️ *E-mail:* ${payload.email}
-📍 *Endereço:* ${payload.endereco}, nº ${payload.numero}${compText}${bairroText}
-🏙️ *Cidade/UF:* ${payload.cidade}/${payload.uf} (CEP: ${payload.cep})
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-Olá! Preenchi a ficha de revenda no site e desejo receber o catálogo oficial de alfaiataria italiana e a tabela de preços atacado.`;
+    const add = (rotulo, valor) => {
+      if (valor) linhas.push(`${rotulo} ${valor}`);
+    };
+
+    add('👤 *Responsável:*', payload.nome);
+    add('🏢 *Razão Social:*', payload.razao_social);
+    add('📋 *CNPJ:*', payload.cnpj);
+    add('📑 *Inscrição Estadual:*', payload.ie);
+    add('📞 *WhatsApp:*', payload.whatsapp);
+    add('✉️ *E-mail:*', payload.email);
+
+    if (payload.endereco) {
+      const numText = payload.numero ? `, nº ${payload.numero}` : '';
+      const compText = payload.complemento ? ` (${payload.complemento})` : '';
+      const bairroText = payload.bairro ? ` - ${payload.bairro}` : '';
+      add('📍 *Endereço:*', `${payload.endereco}${numText}${compText}${bairroText}`);
+    }
+    if (payload.cidade || payload.uf) {
+      const ufText = payload.uf ? `/${payload.uf}` : '';
+      const cepText = payload.cep ? ` (CEP: ${payload.cep})` : '';
+      add('🏙️ *Cidade/UF:*', `${payload.cidade}${ufText}${cepText}`);
+    }
+
+    linhas.push(SEPARADOR);
+    linhas.push('Olá! Preenchi a ficha de credenciamento no site e desejo receber a tabela de preços de atacado e o catálogo oficial.');
+
+    const whatsappMessage = linhas.join('\n');
 
     const waUrl = `https://wa.me/${CONFIG.whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
 
