@@ -16,6 +16,11 @@ const CONFIG = {
   
   // Tolerância máxima de espera para envio à planilha (em milissegundos)
   timeoutMs: 4000,
+
+  // Consulta pública de CNPJ na Receita Federal (BrasilAPI, sem chave de acesso)
+  cnpjEndpoint: "https://brasilapi.com.br/api/cnpj/v1/",
+  cnpjTimeoutMs: 8000,      // limite da consulta em segundo plano
+  cnpjEsperaEnvioMs: 3000,  // quanto o envio aguarda por uma consulta ainda pendente
   
   companyName: "Marina Yachting Brasil",
   conciergeRole: "Concierge B2B de Alfaiataria Italiana"
@@ -24,6 +29,7 @@ const CONFIG = {
 document.addEventListener('DOMContentLoaded', () => {
   initMasks();
   initCepLookup();
+  initCnpjLookup();
   initInscricaoEstadualCheckbox();
   initFormSubmission();
   loadSavedLeadData();
@@ -160,6 +166,130 @@ function initCepLookup() {
 }
 
 // ==========================================================================
+// 3B. CONSULTA DE CNPJ (BRASIL API) — ENRIQUECE O LEAD NA PLANILHA
+// A ficha pede só quatro campos; razão social e endereço são buscados na
+// Receita em segundo plano, enquanto o visitante termina de preencher.
+// ==========================================================================
+
+// Estado compartilhado com o envio do formulário
+const CNPJ_STATE = {
+  consulta: null,   // Promise em andamento
+  dados: null,      // resultado já resolvido
+  documento: ''     // CNPJ (só dígitos) que originou a consulta
+};
+
+// Dígito verificador: descarta erro de digitação antes de chamar a API
+function isCnpjValido(raw) {
+  const c = (raw || '').replace(/\D/g, '');
+  if (c.length !== 14 || /^(\d)\1{13}$/.test(c)) return false;
+
+  const calcularDigito = (base) => {
+    let peso = base.length === 12 ? 5 : 6;
+    let soma = 0;
+    for (let i = 0; i < base.length; i++) {
+      soma += Number(base[i]) * peso;
+      peso = peso === 2 ? 9 : peso - 1;
+    }
+    const resto = soma % 11;
+    return resto < 2 ? 0 : 11 - resto;
+  };
+
+  return calcularDigito(c.slice(0, 12)) === Number(c[12]) &&
+         calcularDigito(c.slice(0, 13)) === Number(c[13]);
+}
+
+async function consultarCnpj(documento) {
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), CONFIG.cnpjTimeoutMs);
+
+  try {
+    const resposta = await fetch(`${CONFIG.cnpjEndpoint}${documento}`, { signal: controller.signal });
+
+    if (resposta.status === 404) return { erro: 'nao_encontrado' };
+    if (!resposta.ok) return { erro: 'indisponivel' };
+
+    const dados = await resposta.json();
+    const situacao = (dados.descricao_situacao_cadastral || '').toUpperCase();
+
+    return {
+      ativa: situacao === 'ATIVA',
+      situacao: situacao || 'NAO INFORMADA',
+      razao_social: dados.razao_social || '',
+      nome_fantasia: dados.nome_fantasia || '',
+      cep: dados.cep || '',
+      endereco: [dados.descricao_tipo_de_logradouro, dados.logradouro].filter(Boolean).join(' ').trim(),
+      numero: dados.numero || '',
+      complemento: dados.complemento || '',
+      bairro: dados.bairro || '',
+      cidade: dados.municipio || '',
+      uf: dados.uf || '',
+      atividade: dados.cnae_fiscal_descricao || '',
+      porte: dados.porte || '',
+      abertura: dados.data_inicio_atividade || ''
+    };
+  } catch (err) {
+    // Timeout, offline ou bloqueio: falha técnica nunca reprova o lead
+    return { erro: 'indisponivel' };
+  } finally {
+    clearTimeout(timeout);
+  }
+}
+
+function initCnpjLookup() {
+  const cnpjInput = document.getElementById('b2b-cnpj');
+  const spinner = document.getElementById('cnpj-spinner');
+  const feedback = document.getElementById('cnpj-feedback');
+
+  if (!cnpjInput) return;
+
+  const mostrar = (texto, cor) => {
+    if (!feedback) return;
+    feedback.textContent = texto;
+    feedback.style.color = cor;
+    feedback.classList.toggle('is-visible', !!texto);
+  };
+
+  const disparar = () => {
+    const documento = cnpjInput.value.replace(/\D/g, '');
+    if (documento.length !== 14 || documento === CNPJ_STATE.documento) return;
+
+    if (!isCnpjValido(documento)) {
+      CNPJ_STATE.documento = documento;
+      CNPJ_STATE.dados = { erro: 'digito_invalido' };
+      CNPJ_STATE.consulta = null;
+      mostrar('CNPJ inválido. Confira os números digitados.', 'var(--c-error)');
+      return;
+    }
+
+    CNPJ_STATE.documento = documento;
+    CNPJ_STATE.dados = null;
+    if (spinner) spinner.classList.add('is-active');
+    mostrar('Consultando dados da empresa...', 'var(--c-gold-hover)');
+
+    CNPJ_STATE.consulta = consultarCnpj(documento).then((resultado) => {
+      CNPJ_STATE.dados = resultado;
+      if (spinner) spinner.classList.remove('is-active');
+
+      if (resultado.erro === 'nao_encontrado') {
+        mostrar('CNPJ não localizado na Receita Federal.', 'var(--c-error)');
+      } else if (resultado.erro) {
+        // Sem conseguir consultar, o cadastro segue normalmente
+        mostrar('', '');
+      } else if (!resultado.ativa) {
+        mostrar(`Situação cadastral: ${resultado.situacao}. É necessário CNPJ ativo.`, 'var(--c-error)');
+      } else {
+        const nome = resultado.razao_social || resultado.nome_fantasia;
+        mostrar(nome ? `${nome} · ${resultado.cidade}/${resultado.uf}` : 'CNPJ ativo confirmado.', 'var(--c-success)');
+      }
+      return resultado;
+    });
+  };
+
+  cnpjInput.addEventListener('input', disparar);
+  cnpjInput.addEventListener('blur', disparar);
+}
+
+// ==========================================================================
 // 4. CHECKBOX DE INSCRIÇÃO ESTADUAL ISENTO
 // ==========================================================================
 function initInscricaoEstadualCheckbox() {
@@ -208,6 +338,8 @@ function initFormSubmission() {
 
   async function processForm() {
     clearErrors();
+
+    const val = (el) => (el && typeof el.value === 'string') ? el.value.trim() : '';
 
     const nome = document.getElementById('b2b-nome');
     const telefone = document.getElementById('b2b-telefone');
@@ -290,29 +422,87 @@ function initFormSubmission() {
     `;
 
     // ========================================================================
+    // SITUAÇÃO CADASTRAL DO CNPJ (BRASIL API)
+    // A consulta costuma já ter terminado enquanto o visitante preenchia os
+    // outros campos; se ainda estiver correndo, aguarda um instante por ela.
+    // ========================================================================
+    const documentoAtual = val(cnpj).replace(/\D/g, '');
+
+    if (CNPJ_STATE.consulta && CNPJ_STATE.documento === documentoAtual && !CNPJ_STATE.dados) {
+      await Promise.race([
+        CNPJ_STATE.consulta,
+        new Promise((resolve) => setTimeout(resolve, CONFIG.cnpjEsperaEnvioMs))
+      ]);
+    }
+
+    const receita = (CNPJ_STATE.documento === documentoAtual) ? CNPJ_STATE.dados : null;
+
+    // Só reprova quando a Receita respondeu: falha de rede ou consulta pendente
+    // jamais barra um lead legítimo.
+    const reprovado =
+      (!isCnpjValido(documentoAtual) && 'O CNPJ informado é inválido. Confira os números digitados.') ||
+      (receita && receita.erro === 'nao_encontrado' && 'CNPJ não localizado na Receita Federal. Confira o número.') ||
+      (receita && !receita.erro && !receita.ativa &&
+        `Este CNPJ consta como ${receita.situacao} na Receita Federal. O credenciamento exige CNPJ ativo.`);
+
+    if (reprovado) {
+      isSubmitting = false;
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = `
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+          <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+        </svg>
+        <span>Quero receber a tabela de preços</span>
+      `;
+      if (feedbackMsg) {
+        feedbackMsg.textContent = reprovado;
+        feedbackMsg.classList.add('is-error');
+      }
+      if (cnpj) {
+        cnpj.classList.add('is-invalid');
+        cnpj.classList.remove('is-valid');
+        cnpj.focus();
+      }
+      return;
+    }
+
+    // ========================================================================
     // PREPARAÇÃO DO PAYLOAD CONFORME ESPECIFICAÇÃO
     // ========================================================================
-    // A landing de captação pede apenas nome, WhatsApp e CNPJ; os demais campos são
-    // confirmados pelo concierge na conversa. As chaves seguem completas para preservar
-    // as colunas já existentes na planilha do Google Sheets.
-    const val = (el) => (el && typeof el.value === 'string') ? el.value.trim() : '';
+    // A landing de captação pede quatro campos; razão social e endereço vem da
+    // consulta a Receita. As chaves seguem completas para preservar as colunas
+    // já existentes na planilha do Google Sheets.
     const ieValue = isIsento ? 'ISENTO' : val(inscricao);
+
+    // O campo digitado sempre tem prioridade; a Receita preenche o que ficou vazio
+    const daReceita = (receita && !receita.erro) ? receita : {};
+    const ou = (digitado, consultado) => digitado || consultado || '';
 
     const payload = {
       nome: val(nome),
       whatsapp: val(telefone),
       email: val(email),
       cnpj: val(cnpj),
-      razao_social: val(razaoSocial),
+      razao_social: ou(val(razaoSocial), daReceita.razao_social),
       ie: ieValue,
-      cep: val(cep),
-      endereco: val(logradouro),
-      numero: val(numero),
-      complemento: val(complemento),
-      bairro: val(bairro),
-      cidade: val(cidade),
-      uf: val(uf)
+      cep: ou(val(cep), daReceita.cep),
+      endereco: ou(val(logradouro), daReceita.endereco),
+      numero: ou(val(numero), daReceita.numero),
+      complemento: ou(val(complemento), daReceita.complemento),
+      bairro: ou(val(bairro), daReceita.bairro),
+      cidade: ou(val(cidade), daReceita.cidade),
+      uf: ou(val(uf), daReceita.uf)
     };
+
+    // Campos extras da Receita. Só aparecem na planilha depois que as colunas
+    // correspondentes forem mapeadas no Apps Script; até lá são ignorados.
+    if (daReceita.razao_social) {
+      payload.nome_fantasia = daReceita.nome_fantasia || '';
+      payload.situacao_cadastral = daReceita.situacao || '';
+      payload.atividade_principal = daReceita.atividade || '';
+      payload.porte = daReceita.porte || '';
+    }
 
     // Salva localmente em cache para conveniência do usuário
     try {

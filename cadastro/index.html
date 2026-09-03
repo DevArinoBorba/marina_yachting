@@ -185,7 +185,9 @@
                 </span>
                 <input type="text" id="b2b-cnpj" class="lp-form-input" placeholder="00.000.000/0000-00"
                   inputmode="numeric" required>
+                <div class="lp-cep-spinner" id="cnpj-spinner"></div>
               </div>
+              <span class="lp-cep-feedback" id="cnpj-feedback" role="status" aria-live="polite"></span>
             </div>
 
             <!-- Feedback de Validação -->
@@ -222,9 +224,9 @@
             </div>
 
             <p class="cad-form-note">
-              Exclusivo para empresas com CNPJ ativo. Os demais dados cadastrais
-              (razão social, inscrição estadual e endereço de entrega) são confirmados
-              na conversa com o concierge.
+              Exclusivo para empresas com CNPJ ativo. Razão social e endereço são
+              preenchidos automaticamente pela consulta à Receita Federal; a inscrição
+              estadual é confirmada na conversa com o concierge.
             </p>
 
             <div class="lp-form-security">
