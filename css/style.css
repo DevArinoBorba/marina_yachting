@@ -860,14 +860,16 @@ textarea:focus-visible,
 
 .solutions-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 28px;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 36px;
+  max-width: 1040px;
+  margin: 0 auto;
 }
 
 .solution-card {
   background: var(--bg-card);
   border: 1px solid var(--border-subtle);
-  padding: 38px 30px;
+  padding: 46px 38px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -877,7 +879,7 @@ textarea:focus-visible,
 }
 
 .solution-card:hover {
-  transform: translateY(-5px);
+  transform: translateY(-6px);
   border-color: var(--border-gold);
   box-shadow: var(--shadow-card);
 }
@@ -885,18 +887,19 @@ textarea:focus-visible,
 .solution-card.featured {
   border-color: var(--border-gold-strong);
   background: var(--bg-card-alt);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
 }
 
 .solution-icon-box {
-  width: 52px;
-  height: 52px;
+  width: 56px;
+  height: 56px;
   background: var(--bg-alt);
   border: 1px solid var(--border-gold);
   display: flex;
   align-items: center;
   justify-content: center;
   color: var(--c-navy-deep);
-  margin-bottom: 22px;
+  margin-bottom: 24px;
 }
 
 [data-theme="dark"] .solution-icon-box {
@@ -905,38 +908,47 @@ textarea:focus-visible,
 
 .solution-card h3 {
   font-family: var(--ff-display);
-  font-size: 1.75rem;
-  line-height: 1.22;
+  font-size: 1.85rem;
+  line-height: 1.25;
   color: var(--text-title);
-  margin-bottom: 12px;
+  margin-bottom: 14px;
 }
 
 .solution-card p {
-  font-size: 0.9rem;
+  font-size: 0.94rem;
   color: var(--text-muted);
-  line-height: 1.7;
-  margin-bottom: 20px;
+  line-height: 1.72;
+  margin-bottom: 24px;
 }
 
 .solution-features {
   list-style: none;
-  margin-bottom: 26px;
+  margin-bottom: 32px;
   border-top: 1px solid var(--border-subtle);
-  padding-top: 16px;
+  padding-top: 20px;
 }
 
 .solution-features li {
-  font-size: 0.82rem;
+  font-size: 0.86rem;
   color: var(--text-main);
   display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 8px;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 12px;
+  line-height: 1.5;
 }
 
 .solution-features li svg {
   color: var(--c-gold);
   flex-shrink: 0;
+  margin-top: 3px;
+}
+
+.solution-card .btn {
+  width: 100%;
+  text-align: center;
+  justify-content: center;
+  padding: 13px 24px;
 }
 
 /* --- 9. MOSTRUÁRIO B2B & CATÁLOGO SELETO --- */
