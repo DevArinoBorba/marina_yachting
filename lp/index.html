@@ -2,9 +2,17 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <meta http-equiv="refresh" content="0; url=../cadastro/">
-  <script>window.location.replace("../cadastro/");</script>
+  <meta name="robots" content="noindex, nofollow">
   <title>Redirecionando para Cadastro...</title>
+  <script>
+    // Preserva parâmetros de campanha (utm_*, gclid, fbclid) e âncoras no redirecionamento.
+    // Sem isso, a atribuição de tráfego pago se perderia antes de chegar ao formulário.
+    (function () {
+      var destino = "../cadastro/" + window.location.search + window.location.hash;
+      window.location.replace(destino);
+    })();
+  </script>
+  <noscript><meta http-equiv="refresh" content="0; url=../cadastro/"></noscript>
 </head>
 <body>
   <p>Redirecionando para o credenciamento de lojistas: <a href="../cadastro/">Clique aqui se não for redirecionado</a>.</p>

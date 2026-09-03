@@ -346,9 +346,34 @@ Olá! Preenchi a ficha de revenda no site e desejo receber o catálogo oficial d
     const waUrl = `https://wa.me/${CONFIG.whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
 
     // ========================================================================
-    // DISPARO DE EVENTOS DE CONVERSÃO (META PIXEL / GOOGLE TAG)
+    // DISPARO DA CONVERSÃO PRINCIPAL VIA GOOGLE TAG MANAGER
+    // As tags de Google Ads / GA4 / Meta Pixel são acionadas pelo evento
+    // "generate_lead" configurado no painel do GTM (ver js/tracking.js).
     // ========================================================================
-    if (typeof window.fbq === 'function') {
+    const campaign = (window.MYTrack && window.MYTrack.campaign) || {};
+
+    const leadData = {
+      lead_city: payload.cidade,
+      lead_uf: payload.uf,
+      lead_type: 'credenciamento_lojista',
+      content_name: 'Credenciamento B2B Alfaiataria',
+      content_category: 'Atacado B2B',
+      utm_source: campaign.utm_source || null,
+      utm_medium: campaign.utm_medium || null,
+      utm_campaign: campaign.utm_campaign || null
+    };
+
+    if (window.MYTrack && typeof window.MYTrack.push === 'function') {
+      window.MYTrack.push('generate_lead', leadData);
+      // Mantido por compatibilidade com gatilhos/relatórios já criados no GTM
+      window.MYTrack.push('lead_b2b_submit', leadData);
+    } else if (window.dataLayer && Array.isArray(window.dataLayer)) {
+      window.dataLayer.push({ event: 'generate_lead', ...leadData });
+      window.dataLayer.push({ event: 'lead_b2b_submit', ...leadData });
+    }
+
+    // Fallback: só dispara direto caso o Pixel exista fora do GTM (evita duplicidade)
+    if (typeof window.fbq === 'function' && !window.google_tag_manager) {
       try {
         window.fbq('track', 'Lead', {
           content_name: 'Credenciamento B2B Alfaiataria',
@@ -358,13 +383,6 @@ Olá! Preenchi a ficha de revenda no site e desejo receber o catálogo oficial d
       } catch (err) {
         console.warn('Erro ao disparar Meta Pixel:', err);
       }
-    }
-    if (window.dataLayer && Array.isArray(window.dataLayer)) {
-      window.dataLayer.push({
-        event: 'lead_b2b_submit',
-        lead_city: payload.cidade,
-        lead_uf: payload.uf
-      });
     }
 
     // ========================================================================
