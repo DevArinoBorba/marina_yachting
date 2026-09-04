@@ -1719,7 +1719,7 @@ a {
   position: relative;
   z-index: 2;
   display: grid;
-  grid-template-columns: 1.05fr 0.95fr;
+  grid-template-columns: 1.08fr 0.92fr;
   gap: 3.5rem;
   align-items: center;
 }
@@ -1728,6 +1728,91 @@ a {
    declara essas areas, entao o posicionamento precisa voltar ao automatico. */
 .pl-hero-grid > * {
   grid-area: auto;
+}
+
+/* Badge de destaque Private Label */
+.pl-hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  background: rgba(176, 150, 94, 0.12);
+  border: 1px solid rgba(176, 150, 94, 0.38);
+  padding: 0.42rem 1.05rem;
+  border-radius: 999px;
+  font-size: 0.74rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--c-gold-light);
+  margin-bottom: 0.95rem;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.pl-hero-badge-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--c-gold);
+  box-shadow: 0 0 10px var(--c-gold);
+  animation: plPulse 2s infinite ease-in-out;
+}
+
+@keyframes plPulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.45; transform: scale(0.85); }
+}
+
+.pl-hero-title {
+  font-family: var(--ff-display);
+  font-size: clamp(2.3rem, 4vw, 3.35rem);
+  font-weight: 400;
+  line-height: 1.12;
+  color: var(--c-white-sail);
+  text-wrap: balance;
+  margin-bottom: 1.25rem;
+}
+
+.pl-hero-title em {
+  font-style: italic;
+  color: var(--c-gold-light);
+}
+
+.pl-hero-subtitle {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  font-weight: 300;
+  color: #CAD5E0;
+  max-width: 54ch;
+  margin-bottom: 1.8rem;
+}
+
+.pl-hero-points {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  margin-bottom: 2.2rem;
+}
+
+.pl-hero-points li {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 0.93rem;
+  line-height: 1.5;
+  color: #DDE4EB;
+}
+
+.pl-hero-points li strong {
+  color: #FFFFFF;
+  font-weight: 600;
+}
+
+.pl-hero-points svg {
+  flex-shrink: 0;
+  margin-top: 3px;
+  color: var(--c-gold-light);
 }
 
 .pl-hero-media {
@@ -1741,16 +1826,69 @@ a {
 .pl-hero-media img {
   display: block;
   width: 100%;
-  height: 480px;
+  height: 500px;
   object-fit: cover;
   object-position: center 20%;
+}
+
+.pl-hero-floating-pill {
+  position: absolute;
+  top: 1.2rem;
+  right: 1.2rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  background: rgba(14, 31, 51, 0.88);
+  border: 1px solid rgba(176, 150, 94, 0.5);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  padding: 0.45rem 0.95rem;
+  border-radius: 999px;
+  font-size: 0.74rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--c-gold-light);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+}
+
+.pl-floating-icon {
+  color: var(--c-gold);
+  font-size: 0.85rem;
+}
+
+.pl-hero-media-tag {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  padding: 2.2rem 1.6rem 1.3rem;
+  background: linear-gradient(to top, rgba(14, 31, 51, 0.96) 20%, rgba(14, 31, 51, 0.6) 75%, transparent);
+}
+
+.pl-hero-media-tag strong {
+  display: block;
+  font-family: var(--ff-display);
+  font-size: 1.35rem;
+  font-weight: 600;
+  color: var(--c-gold-light);
+  line-height: 1.15;
+  margin-bottom: 0.25rem;
+}
+
+.pl-hero-media-tag span {
+  font-size: 0.73rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: #B9C4CF;
+  display: block;
 }
 
 .pl-hero-cta {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.7rem;
+  gap: 0.75rem;
   background: var(--c-gold);
   color: var(--c-navy-deep);
   font-size: 0.85rem;
@@ -1758,7 +1896,7 @@ a {
   letter-spacing: 0.12em;
   text-transform: uppercase;
   text-align: center;
-  padding: 1.05rem 2.2rem;
+  padding: 1.08rem 2.2rem;
   border-radius: var(--radius-sm);
   border: 1px solid var(--c-gold);
   box-shadow: var(--shadow-gold);
@@ -1783,6 +1921,54 @@ a {
   margin-top: 0.9rem;
   font-size: 0.8rem;
   color: #B9C4CF;
+}
+
+/* Quick Trust Bar (Abaixo da Grid do Hero) */
+.pl-hero-trust-bar {
+  position: relative;
+  z-index: 2;
+  margin-top: 3.8rem;
+  padding-top: 2.2rem;
+  border-top: 1px solid rgba(176, 150, 94, 0.25);
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+}
+
+.pl-trust-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+}
+
+.pl-trust-icon {
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(176, 150, 94, 0.12);
+  border: 1px solid rgba(176, 150, 94, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--c-gold-light);
+  margin-top: 2px;
+}
+
+.pl-trust-text strong {
+  display: block;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--c-white-sail);
+  margin-bottom: 0.2rem;
+  letter-spacing: 0.02em;
+}
+
+.pl-trust-text span {
+  display: block;
+  font-size: 0.76rem;
+  color: #9CA8B5;
+  line-height: 1.4;
 }
 
 /* --- Tecelagens --- */
@@ -1871,7 +2057,14 @@ a {
   }
 
   .pl-hero-media img {
-    height: 340px;
+    height: 380px;
+  }
+
+  .pl-hero-trust-bar {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.8rem 1.4rem;
+    margin-top: 2.8rem;
+    padding-top: 1.8rem;
   }
 
   .pl-page-mills-list {
@@ -1886,11 +2079,32 @@ a {
 
 @media (max-width: 760px) {
   .pl-hero-media img {
-    height: 260px;
+    height: 280px;
+  }
+
+  .pl-hero-floating-pill {
+    top: 0.9rem;
+    right: 0.9rem;
+    font-size: 0.68rem;
+    padding: 0.35rem 0.75rem;
+  }
+
+  .pl-hero-media-tag {
+    padding: 1.6rem 1.2rem 1rem;
+  }
+
+  .pl-hero-media-tag strong {
+    font-size: 1.15rem;
   }
 
   .pl-hero-cta {
     width: 100%;
+  }
+
+  .pl-hero-trust-bar {
+    grid-template-columns: 1fr;
+    gap: 1.2rem;
+    margin-top: 2.2rem;
   }
 
   .pl-page-mills,
