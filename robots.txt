@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+# Rota de redirecionamento interna: nao deve ser indexada
+Disallow: /lp
+
+Sitemap: https://www.marinayachting.com.br/sitemap.xml

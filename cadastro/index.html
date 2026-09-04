@@ -11,12 +11,17 @@
     content="Seja revendedor oficial da Marina Yachting (Gênova, 1878) no Brasil. Alfaiataria e vestuário masculino italiano no atacado para alfaiatarias, marcas próprias e boutiques multimarcas. Solicite a tabela de preços.">
   <meta name="robots" content="index, follow">
 
+  <!-- URL canônica: o tráfego pago chega com ?utm_source, ?gclid e ?fbclid,
+       e sem esta tag o Google as trataria como páginas distintas. -->
+  <link rel="canonical" href="https://www.marinayachting.com.br/cadastro">
+
   <!-- Open Graph: preview correto ao compartilhar o anúncio ou o link -->
   <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.marinayachting.com.br/cadastro">
   <meta property="og:title" content="Revenda Oficial Marina Yachting Brasil · Atacado B2B">
   <meta property="og:description"
     content="Marca italiana de Gênova desde 1878. Tabela de atacado, exclusividade territorial e concierge comercial para lojistas com CNPJ.">
-  <meta property="og:image" content="../imgs/3.jpeg">
+  <meta property="og:image" content="https://www.marinayachting.com.br/imgs/3.jpeg">
   <meta property="og:locale" content="pt_BR">
 
   <!-- Google Tag Manager (container único: Google Ads, GA4 e Meta Pixel) -->
@@ -50,10 +55,10 @@
        ====================================================================== -->
   <header class="cad-header">
     <div class="container cad-header-content">
-      <div class="cad-logo-wrap">
+      <a href="/" class="cad-logo-wrap" aria-label="Marina Yachting Brasil — início">
         <img src="../imgs/logo-dark.png" alt="Marina Yachting Brasil Since 1878" class="cad-logo-img">
         <span class="cad-badge-tag">Representação<br>Oficial Brasil</span>
-      </div>
+      </a>
 
       <a href="#ficha" class="cad-header-cta" data-cta="header">Solicitar tabela de atacado</a>
     </div>
