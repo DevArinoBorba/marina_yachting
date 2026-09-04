@@ -120,12 +120,13 @@
     return "link_direto";
   }
 
+  // Só o destino real conta: um link que aponta para /cadastro e rastreado como
+  // navegacao, nao como contato por WhatsApp.
   function findWhatsAppTarget(node) {
     while (node && node !== document.body) {
-      if (node.nodeType === 1) {
-        const href = node.getAttribute ? node.getAttribute("href") : null;
-        const isWaLink = href && (href.indexOf("wa.me") !== -1 || href.indexOf("api.whatsapp.com") !== -1);
-        if (isWaLink || (node.hasAttribute && node.hasAttribute("data-wa-type"))) return node;
+      if (node.nodeType === 1 && node.getAttribute) {
+        const href = node.getAttribute("href") || "";
+        if (href.indexOf("wa.me") !== -1 || href.indexOf("api.whatsapp.com") !== -1) return node;
       }
       node = node.parentNode;
     }
@@ -190,7 +191,7 @@
 
       const section = link.closest("section");
       pushEvent(evento, {
-        cta_id: link.getAttribute("data-cta") || "link",
+        cta_id: link.getAttribute("data-cta") || link.getAttribute("data-wa-type") || "link",
         cta_section: (section && section.id) || getPageContext().page_section,
         cta_text: (link.textContent || "").trim().slice(0, 80)
       });

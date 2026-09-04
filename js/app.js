@@ -6,10 +6,12 @@
 
 // ==========================================================================
 // 1. CONFIGURAÇÕES GERAIS
-// Altere o número de WhatsApp abaixo para o número oficial da representação (DDI + DDD + Número)
 // ==========================================================================
 const CONFIG = {
-  whatsappNumber: "5561992078544", // Telefone Oficial: (61) 9207-8544 (com 9: 5561992078544)
+  // Destino único de todos os botões de contato do site. O atendimento no
+  // WhatsApp é liberado ao final da ficha, com o CNPJ ja validado.
+  contactUrl: "/cadastro",
+
   representativeName: "Concierge Marina Yachting Brasil",
   defaultLocation: "São Paulo, SP"
 };
@@ -109,7 +111,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initMobileMenu();
   initCatalogFilters();
   initModal();
-  initDirectWhatsAppButtons();
+  initContactButtons();
 });
 
 // --- Alternador de Tema (Claro Minimalista / Escuro) ---
@@ -241,10 +243,12 @@ function initModal() {
     document.getElementById("modal-spec-corte").innerText = item.specs.corte || FALLBACK_SPEC;
     document.getElementById("modal-spec-disp").innerText = item.specs.disponibilidade || FALLBACK_SPEC;
 
-    const modalWaBtn = document.getElementById("modal-whatsapp-cta");
-    if (modalWaBtn) {
-      const msg = `Olá! Gostaria de consultar disponibilidade e condições do lote da peça: ${item.name} (${item.ref}) junto à Marina Yachting Brasil.`;
-      modalWaBtn.href = `https://wa.me/${CONFIG.whatsappNumber}?text=${encodeURIComponent(msg)}`;
+    // A consulta de lote também passa pela ficha de credenciamento
+    const modalCtaBtn = document.getElementById("modal-whatsapp-cta");
+    if (modalCtaBtn) {
+      modalCtaBtn.href = CONFIG.contactUrl;
+      modalCtaBtn.removeAttribute("target");
+      modalCtaBtn.setAttribute("data-cta", "modal_mostruario");
     }
 
     modalOverlay.classList.add("active");
@@ -277,23 +281,15 @@ function initModal() {
 }
 
 // ==========================================================================
-// 6. BOTÕES DIRETOS DE WHATSAPP (HEADER, CTA, FLOATING)
+// 6. BOTÕES DE CONTATO (HEADER, CTA, SALÃO, FLUTUANTE)
 // ==========================================================================
-function initDirectWhatsAppButtons() {
+// Todos conduzem à ficha de credenciamento: o contato no WhatsApp passa a ser
+// liberado ao final do cadastro, com os dados da empresa já validados.
+function initContactButtons() {
   document.querySelectorAll("[data-wa-type]").forEach(btn => {
-    const type = btn.getAttribute("data-wa-type");
-    let msg = "Olá! Gostaria de mais informações sobre a representação e mostruário B2B da Marina Yachting Brasil.";
-
-    if (type === "header") {
-      msg = "Olá! Gostaria de agendar um atendimento institucional B2B com a Marina Yachting Brasil. Posso detalhar meu perfil (ateliê, marca própria ou boutique) na conversa.";
-    } else if (type === "floating") {
-      msg = "Olá! Tenho interesse em conhecer a coleção da Marina Yachting Brasil para o meu negócio (ateliê, marca própria ou boutique).";
-    } else if (type === "salon") {
-      msg = "Olá! Gostaria de solicitar um agendamento privado no salão de atendimento da Marina Yachting Brasil. Posso informar meu perfil (ateliê, marca própria ou boutique) ao confirmar o horário.";
-    }
-
-    btn.href = `https://wa.me/${CONFIG.whatsappNumber}?text=${encodeURIComponent(msg)}`;
-    btn.target = "_blank";
-    btn.rel = "noopener noreferrer";
+    btn.href = CONFIG.contactUrl;
+    // Navegação interna: não deve abrir em nova aba nem carregar rel de link externo
+    btn.removeAttribute("target");
+    btn.removeAttribute("rel");
   });
 }
