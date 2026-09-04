@@ -64,6 +64,7 @@
     const path = window.location.pathname.replace(/\/+$/, "") || "/";
     let section = "institucional";
     if (path.indexOf("/cadastro") === 0) section = "cadastro_b2b";
+    else if (path.indexOf("/private-label") === 0) section = "private_label";
     else if (path.indexOf("/lp") === 0) section = "lp_redirect";
     return { page_section: section, page_path: path };
   }
@@ -174,17 +175,21 @@
   }
 
   // ==========================================================================
-  // 6. RASTREIO DO CTA DE CREDENCIAMENTO (HOME -> /cadastro)
+  // 6. RASTREIO DOS CTAs DE NAVEGACAO (-> /cadastro e -> /private-label)
   // ==========================================================================
   function initCadastroCtaTracking() {
     document.addEventListener("click", (e) => {
       if (!e.target || !e.target.closest) return;
 
-      const link = e.target.closest('a[href*="cadastro"]');
+      const link = e.target.closest('a[href*="cadastro"], a[href*="private-label"]');
       if (!link) return;
 
+      // Link de aprofundamento e conversao sao momentos distintos do funil
+      const href = link.getAttribute("href") || "";
+      const evento = href.indexOf("cadastro") !== -1 ? "cadastro_cta_click" : "private_label_cta_click";
+
       const section = link.closest("section");
-      pushEvent("cadastro_cta_click", {
+      pushEvent(evento, {
         cta_id: link.getAttribute("data-cta") || "link",
         cta_section: (section && section.id) || getPageContext().page_section,
         cta_text: (link.textContent || "").trim().slice(0, 80)
